@@ -199,48 +199,7 @@
       
         <p>第一次搭建Github-page的过程中遇见了不少问题。网上的教程很多，看起来眼花缭乱，在此根据自己的经验稍作整理。（windows环境）</p>
 <h1 id="〇、Hexo">〇、Hexo</h1><p>hexo是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github和Heroku上。作者是来自台湾的@tommy351.用作者的话来说Hexo是一套快速、简洁且高效的博客框架。</p>
-<p>类似于jekyll、Octopress、WordPress，我们可以用hexo创建自己的博客，托管到GitHub上，绑定自己的域名，用MarkDown写文章。本博客即使用hexo创建并托管在github上。</p>
-<h2 id="为什么要使用Hexo?">为什么要使用Hexo?</h2><h2 id="超快的速度">超快的速度</h2><p>Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。</p>
-<h2 id="支持_Markdown">支持 Markdown</h2><p>Hexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。</p>
-<h2 id="一键部署">一键部署</h2><p>只需一条指令即可部署到 GitHub Pages, Heroku 或其他网站。</p>
-<h2 id="丰富的插件">丰富的插件</h2><p>Hexo 拥有强大的插件系统，安装插件可以让 Hexo 支持 Jade, CoffeeScript。</p>
-<h1 id="一、准备工作">一、准备工作</h1><p>你需要下载<a href="https://git-for-windows.github.io/" title="下载" target="_blank" rel="external">git</a>、<a href="https://nodejs.org/en/" title="下载" target="_blank" rel="external">Node.js</a>、两个软件，并且在windows下选择默认路径进行安装。同时建议你使用sublime进行文本编辑。</p>
-<h2 id="1-安装Hexo">1.安装Hexo</h2><p>使用npm命令即可直接安装 (可以直接在屏幕任意地方直接右键: Git Bash Here)</p>
-<pre><code>npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> hexo</span>
-</code></pre><p>静静等待安装完毕即可.</p>
-<h2 id="2-创建Hexo目录">2.创建Hexo目录</h2><p>目录可以在任意地方创建 (注:尽量全英文路径 避免不必要的问题)<br>EG: C:\Users\Documents\Hexo<br>现在<strong>进入Hexo目录内</strong>在里面右键选择: Git Bash Here</p>
-<p>Hexo 会自动生成建站所需要的文件，在gitbash 里面依次执行：</p>
-<pre><code>hexo init
-npm <span class="keyword">install</span>
-</code></pre><p>hexo会自动配置环境。</p>
-<p>测试一下安装是否成功来进行下一步：</p>
-<pre><code><span class="title">hexo</span> s
-</code></pre><p>出现INFO HEXO运行在本地端口等信息则说明hexo安装成功，此时如果在浏览器输入 localhost：4000可以看见本地的hexo blog默认的框架–别心急，这只意味着可以进行下一步的配置了。</p>
-<h1 id="二、配置github的SSH">二、配置github的SSH</h1><p>GitHub Pages本用于介绍托管在GitHub的项目， 不过，由于他的空间免费稳定，用来做搭建一个博客再好不过了。github公司也鼓励使用Github搭建博客来分享技术心得。</p>
-<p>github Pages可以被认为是用户编写的、托管在github上的静态网页。<br>若想建立Github-page,首先应当在github.com 拥有自己的账号。简单的注册程序。<br>在自己Github主页右下角，创建一个新的repository。比如我的Github账号是Simonic512，那么我应该创建的repository名字应该是Simonic512.github.io，作为blog的仓库应该符合这个命名规范。</p>
-<h2 id="1-_配置SSh_key：">1. 配置SSh key：</h2><p>首先我们需要检查你电脑上现有的ssh key：</p>
-<pre><code>$ <span class="built_in">cd</span> ~/.ssh
-</code></pre><p>如果提示：“No such file or directory” 说明你是第一次使用git。</p>
-<h2 id="2-_生成新的SSH_Key：">2. 生成新的SSH Key：</h2><pre><code>$ ssh-keygen -t rsa -C <span class="string">"you@youremail.com"</span>
-
-注意：Enter <span class="built_in">file</span> <span class="operator">in</span> which <span class="built_in">to</span> save <span class="operator">the</span> key (/Users/your_user_directory/.ssh/id_rsa):（回车就好），
-Enter passphrase (<span class="constant">empty</span> <span class="keyword">for</span> no passphrase):（回车，不要输入密码）
-Enter same passphrase again:（回车不要输入密码）
-</code></pre><p><strong>因为Hexo的自动部署如果有密码的话会部署失败！！</strong></p>
-<h2 id="3-_添加SSH_Key到GitHub">3. 添加SSH Key到GitHub</h2><p>在本机设置SSH Key之后，需要添加到GitHub上，以完成SSH链接的设置。</p>
-<p>在 C:\Users\Administrator.ssh 路径下找到 id_rsa.pub 文件，使用文本编辑器打开，ctrl+a 复制全部文本。</p>
-<p>登陆GitHub官网，找到右上角的 Settings —&gt; SSH keys —&gt; Add SSH keys，将刚才复制的文本全部粘贴到key文本框中（title随意填）。add Key添加。</p>
-<h2 id="4-_测试是否成功">4. 测试是否成功</h2><pre><code><span class="variable">$ </span>ssh -<span class="constant">T</span> git<span class="variable">@github</span>.com
-</code></pre><p>如果是以下提示：<br>“Hi Yourusername! You’ve successfully authenticated, but GitHub does not provide shell access.”<br>证明你配置成功了。</p>
-<h2 id="5-_设置用户信息">5. 设置用户信息</h2><pre><code>$ git config --<span class="keyword">global</span> user.name <span class="string">"Yourusername"</span>   <span class="preprocessor">#GitHub用户名</span>
-$ git config --<span class="keyword">global</span> user.email  <span class="string">"Your email"</span>   <span class="preprocessor">#填写自己的邮箱</span>
-</code></pre><p>至此配置GitHub就已经完成了</p>
-<h1 id="三、上传本地的blog信息到_github">三、上传本地的blog信息到 github </h1><p>先进入 Hexo目录，在文件夹任意地方右键 Git Bash Here</p>
-<pre><code><span class="variable">$ </span>hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy &amp;&amp; hexo clean
-</code></pre><p>讲解一下这串命令含义：</p>
-<p>hexo clean : 清理 database 和 /public目录， /public目录里是生成的静态文件数据。<br>hexo generaet : 简写是 “hexo g” 命令是用来生成静态页面的 会创建 /public目录静态页面数据都在这个文件夹里。<br>hexo deploy ： 一键部署命令上面在 _config.yml文件中配置了部署信息。这个命令会帮助你一键部署。</p>
-<p>运行完这个命令，然后访问：<a href="http://Yourusername.github.io" target="_blank" rel="external">http://Yourusername.github.io</a> 看看是否能在互联网中访问。访问成功则说明你的 github-Page搭建成功。以后有关github的文章会随着自己的学习陆续更新，下一篇会继续分享有关clone主题、配置config信息来自定义自己的blog等内容。</p>
-
+<p>类似于jekyll、Octopress、WordPress，我们可以用hexo创建自己的博客，托管到GitHub上，绑定自己的域名，用MarkDown写文章。本博客即使用hexo创建并托管在github上。
       
     </div>
     
@@ -253,6 +212,10 @@ $ git config --<span class="keyword">global</span> user.email  <span class="stri
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/09/28/用hexo建立GitHub-Page/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -299,75 +262,6 @@ $ git config --<span class="keyword">global</span> user.email  <span class="stri
 <p>“利用对象，可将一个程序分割成相互独立的区域。我们通常也需要讲一个程序转换成多个独立运行的子任务，像这样的每一个子任务都叫做一个线程（Thread）”<br>                                  –     Think in Java</p>
 </blockquote>
 <p><strong>每个 Java 程序都至少有两个线程独立运行：main 线程以及 Java 的垃圾回收线程。</strong></p>
-<h1 id="一、创建自定义线程">一、创建自定义线程</h1><p>实际使用中需要我们自定义线程来实现多线程，通常有以下两种方法：</p>
-<h2 id="A-_extends_Thread_类">A.  extends Thread 类</h2><p>第一种方法有三个步骤来创建线程</p>
-<p>1.自定义一个类来继承 Thread 类。</p>
-<p>2.重写 Thread 类中的run() 方法。</p>
-<p>3.创建 Thread 类子类的对象，并且调用start()方法开启线程。</p>
-<p>注意事项有两条：<strong>一是将自定义线程的任务代码写在run()方法中，就像主线程的任务代码就是main方法中的所有代码。二是一定要用start()方法来开启线程，其会自动调用run()方法中的代码，如果直接调用run()方法，那么将不会开启一个新的线程。</strong></p>
-<h2 id="B-_implements_Runnable_接口">B. implements Runnable 接口</h2><p>1.自定义一个类来实现 Runnable 接口。</p>
-<p>2.实现接口中的 run() 方法。</p>
-<p>3.创建实现类的对象。</p>
-<p>4.创建 Thread 类的对象并把 Runnable 实现类的对象作为实参传递。</p>
-<p>5.调用 Thread 的 start() 方法开启线程。</p>
-<p>Runnable 实现类的对象并不是一个线程对象，只有 Thread 或Thread 的子类才是线程对象。（因为没有 run() 方法）。</p>
-<p><strong>实际使用中多使用B方案，因为Java的单继承机制。一旦继承了 Thread 类便无法再继承其他类。</strong></p>
-<h1 id="二、线程安全问题">二、线程安全问题</h1><p>由于CPU资源调度的随机性，多线程任务会出现线程安全问题。sun公司提供了线程同步机制来解决线程安全问题。</p>
-<p>主要有同步代码块和同步函数两种方式。</p>
-<h2 id="A-同步代码块：">A.同步代码块：</h2><p>synchronized(“锁对象”){同步代码};</p>
-<p>其中 锁对象可以是任意的 static 对象。既可以是声明的</p>
-<p>static Object lock = new Object();</p>
-<p>也可以是在字符串常量区的一个任意字符串</p>
-<p>“lock”;</p>
-<p>一个线程进入了同步代码块中时，锁对象自动变为 LOCK 模式，在该线程没有执行完同步代码块之前，不会允许任何线程进入同步代码块中执行代码。</p>
-<h2 id="B-同步函数：">B.同步函数：</h2><p>synchronized 修饰的函数称为同步函数。其原理与同步代码块相似，非静态的同步函数的锁对象是 this 对象（函数的调用者），静态函数的锁对象是当前函数所属的类字节码文件（class）。</p>
-<p>同步机制解决了线程安全问题，但也同时引发了死锁现象：</p>
-<p>存在两个或以上的线程/并且存在两个或以上的共享资源时，线程互相等待资源。</p>
-<p>实际使用中多使用A方案（lock对象比较清晰简单）。</p>
-<pre><code>public <span class="class"><span class="keyword">class</span> <span class="title">MyText006</span></span>{
-    public <span class="literal">static</span> <span class="keyword">void</span> main(<span class="built_in">String</span>[] args){
-    SellTicket sell1 = <span class="keyword">new</span> SellTicket(<span class="string">"sell1"</span>);
-    SellTicket sell2 = <span class="keyword">new</span> SellTicket(<span class="string">"sell2"</span>);
-    SellTicket sell3 = <span class="keyword">new</span> SellTicket(<span class="string">"sell3"</span>);
-
-    sell1.start(); 
-    sell2.start();    
-    sell3.start();
-   }
-}
-
- <span class="class"><span class="keyword">class</span>  <span class="title">SellTicket</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>{
-     <span class="literal">static</span> <span class="built_in">int</span> <span class="built_in">num</span> = <span class="number">500</span>;
-     <span class="literal">static</span> <span class="built_in">Object</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();
-     public SellTicket(<span class="built_in">String</span> name){
-         <span class="keyword">super</span>(name);
-     }
-     public <span class="keyword">void</span> run(){
-     synchronized(o){
-         <span class="keyword">while</span>( <span class="keyword">true</span>){
-          <span class="keyword">if</span> (<span class="built_in">num</span> &gt;= <span class="number">0</span>) {
-           System.out.println(Thread.currentThread().getName() +<span class="string">" 还剩下"</span> +<span class="built_in">num</span> +<span class="string">"张票"</span>);
-         <span class="built_in">num</span>--;
-        }
-         <span class="keyword">else</span> {
-             System.out.println(<span class="string">"No Ticket!"</span>);
-            <span class="keyword">break</span>;
-         }
-
-     }
-     }
- }
-}
-</code></pre><h1 id="三、线程的一些常用方法"> 三、线程的一些常用方法</h1><p> sleep()方法: 静态方法，A线程执行A线程 sleep。不一定是调用者、</p>
-<p> currentThread()方法：返回当前线程对象。 A线程执行A线程返回。</p>
-<p> getPriority()：返回线程的优先级。（默认为5，Java线程数字越大优先级越高，1~10）</p>
-<p> setPriority(): 设置线程的优先级。</p>
-<p> ##线程通讯方法：</p>
-<p> wait(); 等待</p>
-<p> notify(); 唤醒 </p>
-<p> 这两个方法属于Object对象，只能在同步代码块中使用，由锁对象调用。一旦执行wait()方法将会释放锁对象。</p>
-<p>–wait for update</p>
-
       
     </div>
     
@@ -381,64 +275,9 @@ $ git config --<span class="keyword">global</span> user.email  <span class="stri
       
 
       
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/09/28/hello-world/" class="article-date">
-  	<time datetime="2015-09-28T03:11:08.838Z" itemprop="datePublished">2015-09-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/28/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
+        <p class="article-more-link">
+          <a  href="/2015/09/28/Java-多线程/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
