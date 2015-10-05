@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java中的泛型 | Simon&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="泛型规范在JDK1.5版本中被添加，使用泛型机制编写的代码比起随意使用Object变量然后再进行强制类型转换的代码具有更高的安全性和可读性，同时也更为简洁。泛型对于集合类尤其有用，例如 ArrayList array = new ArrayList();。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中的泛型">
+<meta property="og:url" content="http://yoursite.com/2015/10/05/Java中的泛型/index.html">
+<meta property="og:site_name" content="Simon's blog">
+<meta property="og:description" content="泛型规范在JDK1.5版本中被添加，使用泛型机制编写的代码比起随意使用Object变量然后再进行强制类型转换的代码具有更高的安全性和可读性，同时也更为简洁。泛型对于集合类尤其有用，例如 ArrayList array = new ArrayList();。">
+<meta property="og:updated_time" content="2015-10-05T09:10:49.196Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java中的泛型">
+<meta name="twitter:description" content="泛型规范在JDK1.5版本中被添加，使用泛型机制编写的代码比起随意使用Object变量然后再进行强制类型转换的代码具有更高的安全性和可读性，同时也更为简洁。泛型对于集合类尤其有用，例如 ArrayList array = new ArrayList();。">
+  
+    <link rel="alternative" href="/atom.xml" title="Simon&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">崔伟健</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">得到的都是侥幸，失去的才是人生。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2878590964/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/github/" style="font-size: 10px;">github</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">JLU在读计算机硕士。主修数据挖掘。一个每周运动八小时的胖子。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">崔伟健</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">崔伟健</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">得到的都是侥幸，失去的才是人生。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2878590964/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Java中的泛型" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/05/Java中的泛型/" class="article-date">
+  	<time datetime="2015-10-05T07:50:16.000Z" itemprop="datePublished">2015-10-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java中的泛型
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>泛型规范在JDK1.5版本中被添加，使用泛型机制编写的代码比起随意使用Object变量然后再进行强制类型转换的代码具有更高的安全性和可读性，同时也更为简洁。泛型对于集合类尤其有用，例如 ArrayList<e> array = new ArrayList<e>();。<br><a id="more"></a></e></e></p>
+<h1 id="一、泛型">一、泛型</h1><p>泛型程序设计(Generic programming)意味着编写的代码可以被很多操作不同数据类型的对象所重用。例如</p>
+<pre><code>ArrayList<span class="instruction"> array </span>=<span class="instruction"> new </span>ArrayList(<span class="function">)</span>; 
+</code></pre><p>简单声明一个ArrayList类型的集合，集合中维护了一个Object引用的数组。而实际使用中集合往往只需要维护某一种特定的非Obj数据类型并对其进行操作，这意味着这ArrayList集合将面对两个问题：1.对集合中元素进行操作时必须进行强制类型转换。2.可以向集合中添加任意类型的变量，如果对任意类型变量进行操作时（比如强制类型转换），容易产生运行时错误。</p>
+<p>泛型提供了一个很好的解决方案：类型参数(type parameters)。比如ArrayList类这样来指定类型参数:</p>
+<pre><code>ArrayList&lt;String&gt;<span class="instruction"> array </span>=<span class="instruction"> new </span>ArrayList&lt;String&gt;(<span class="function">)</span>;
+</code></pre><p>这样生命的ArrayList集合只能接收 String 类型的变量，存储其他类型变量时会在编译时报错。同时不需要进行强制类型转换。</p>
+<p>例如这段代码将所有元素转换成大写：</p>
+<pre><code><span class="keyword">public</span> class Demo1 {
+
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) {
+    ArrayList&lt;<span class="keyword">String</span>&gt;  list = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;();             <span class="comment">//&lt;String&gt; 表示该容器只能存储String类型的数据。</span>
+
+    list.<span class="built_in">add</span>(<span class="string">"aa"</span>);
+    list.<span class="built_in">add</span>(<span class="string">"bb"</span>);
+    list.<span class="built_in">add</span>(<span class="string">"cc"</span>);
+    list.<span class="built_in">add</span>(<span class="number">123</span>);                                                 <span class="comment">//会编译时报错</span>
+    <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span> ; i &lt; list.<span class="built_in">size</span>() ; i++){
+        <span class="keyword">String</span> <span class="built_in">str</span> =  list.<span class="built_in">get</span>(i);
+        System.out.<span class="built_in">println</span>(<span class="string">"大写："</span>+ <span class="built_in">str</span>.toUpperCase());
+    }    
+}
+
+}
+</code></pre><h1 id="二、自定义泛型"><strong>二、自定义泛型</strong></h1><h2 id="1-在方法上自定义泛型">1.在方法上自定义泛型</h2><p>自定义泛型：自定义泛型就是一个数据类型的占位符或者是一个数据类型的变量。</p>
+<p>方法上自定义泛型的声明格式：<strong>（与变量一样需要先声明，再使用）</strong></p>
+<p>修饰符  &lt;声明自定义的泛型&gt;返回值类型    函数名(使用自定义泛型 …){函数体}</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Demo</span> {
+
+  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>{
+    String str = getData(<span class="string">"abc"</span>);
+
+}
+
+  <span class="keyword">public</span> <span class="keyword">static</span> &lt;E&gt;<span class="function">E <span class="title">getData</span>(<span class="params">E o</span>)</span>{               <span class="comment">//&lt;E&gt;是声明自定义的泛型 E是返回值类型为E 形参中的E是指传入参数的类型</span>
+
+    <span class="keyword">return</span> o;
+  }
+}
+</code></pre><p>在方法上自定义泛型需要注意的问题：</p>
+<p><strong>1.在泛型中不能使用基本数据类型，如果需要使用基本数据类型，那么就使用基本数据类型对应的包装类型。</strong></p>
+<p> byte   —-&gt; Byte<br> short  —-&gt; Short<br> int    —-&gt; Integer<br> long   —-&gt; Long<br> double —-&gt; Double<br> float  —-&gt; Float<br> boolean—-&gt; Boolean<br> char   —-&gt; Character </p>
+<ol>
+<li><p>在方法上自定义泛型，这个自定义泛型的具体数据类型是在调用该方法的时候传入实参时确定具体的数据类型的。</p>
+</li>
+<li><p>自定义泛型只要符合标识符的命名规则即可, 但是自定义泛型我们一般都习惯使用一个大写字母表示。  T (Type)  E (Element).</p>
+</li>
+</ol>
+<h2 id="2-在类上自定义泛型"><strong>2.在类上自定义泛型</strong></h2><p>泛型类的定义格式：</p>
+<p>class 类名&lt;声明自定义泛型&gt;{类体}</p>
+<p>泛型类在类的声明部分引入类型变量，声明的类型变量可以在整个类中使用。（在类中自定义泛型之后便无需在每个方法中定义）同时泛型类也可以声明多个类型变量，例如</p>
+<pre><code>public <span class="class"><span class="keyword">class</span> <span class="title">Pair</span><span class="inheritance">&lt;<span class="parent">T</span></span>,<span class="title">U</span>&gt;{}</span>
+</code></pre><p>用具体的类型替换类型变量就可以实例化泛型类，例如：</p>
+<pre><code><span class="built_in">Pair</span>&lt;<span class="built_in">String</span>&gt;;
+</code></pre><p>以及文章开头的</p>
+<pre><code>ArrayList&lt;E&gt;<span class="instruction"> array </span>=<span class="instruction"> new </span>ArrayList&lt;E&gt;(<span class="function">)</span>;
+</code></pre><p>实例：重写一个数组类，实现元素翻转</p>
+<pre><code><span class="keyword">class</span> MyArrays&lt;T&gt;{
+  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reverse</span><span class="params">(T[] arr)</span></span>{                          <span class="comment">//元素翻转</span>
+      <span class="keyword">for</span>(<span class="keyword">int</span> startIndex = <span class="number">0</span>, endIndex = arr.length-<span class="number">1</span> ; startIndex&lt;endIndex ; startIndex++,endIndex--){
+          T temp  = arr[startIndex];
+          arr[startIndex] = arr[endIndex];
+          arr[endIndex] = temp;
+      }
+      }
+
+<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">(T[] arr)</span></span>{                       <span class="comment">//重写toString方法 </span>
+    StringBuilder sb = <span class="keyword">new</span> StringBuilder();
+    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; arr.length ; i++){
+        <span class="keyword">if</span>(i==<span class="number">0</span>){
+            sb.append(<span class="string">"["</span>+arr[i]+<span class="string">","</span>);
+        }<span class="keyword">else</span> <span class="keyword">if</span>(i==arr.length-<span class="number">1</span>){
+            sb.append(arr[i]+<span class="string">"]"</span>);
+        }<span class="keyword">else</span>{
+            sb.append(arr[i]+<span class="string">","</span>);
+        }
+    }
+    <span class="keyword">return</span> sb.toString();
+}
+
+
+<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt;<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(T[] t)</span></span>{
+    }
+}
+
+<span class="keyword">public</span> <span class="keyword">class</span> Demo2 {
+
+  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+      Integer[] arr = {<span class="number">10</span>,<span class="number">12</span>,<span class="number">14</span>,<span class="number">19</span>};
+
+      MyArrays&lt;Integer&gt; tool = <span class="keyword">new</span> MyArrays&lt;Integer&gt;();        <span class="comment">//使用泛型定义的类既可以对Integer类型进行操作，同时也可以对String数据类型进行操作，提高了复用性</span>
+      tool.reverse(arr);
+      System.out.println(<span class="string">"数组的元素："</span>+tool.toString(arr));
+
+      MyArrays&lt;String&gt; tool2 = <span class="keyword">new</span> MyArrays&lt;String&gt;();
+      String[] arr2 = {<span class="string">"aaa"</span>,<span class="string">"bbb"</span>,<span class="string">"ccc"</span>};
+      tool2.reverse(arr2);
+      ArrayList&lt;String&gt; <span class="built_in">list</span> = <span class="keyword">new</span> ArrayList&lt;String&gt;();
+      }
+  }
+</code></pre><p>泛型类要注意的事项：</p>
+<ol>
+<li><p>在类上自定义泛型的具体数据类型是在使用该类的时候创建对象时候确定的。</p>
+</li>
+<li><p>如果一个类在类上已经声明了自定义泛型，如果使用该类创建对象的时候没有指定泛型的具体数据类型，那么默认为Object类型。</p>
+</li>
+<li><p>在类上自定义泛型不能作用于静态的方法,如果静态的方法需要使用自定义泛型，那么需要在方法上自己声明使用。</p>
+</li>
+</ol>
+<h2 id="3-在接口上定义泛型">3.在接口上定义泛型</h2><p>泛型接口的定义格式: </p>
+<p>interface 接口名&lt;声明自定义泛型&gt;{类体}</p>
+<p>泛型接口要注意的事项：</p>
+<ol>
+<li><p>接口上自定义的泛型的具体数据类型是在实现一个接口的时候指定的。</p>
+</li>
+<li><p>在接口上自定义的泛型如果在实现接口的时候没有指定具体的数据类型，那么默认为Object类型。</p>
+</li>
+</ol>
+<p>3.延长接口自定义泛型的具体数据类型，那么格式如下：（实现一个接口的时候，还不明确我目前要操作的数据类型，需要等待创建接口实现类的对象的时候才能指定泛型的具体数据类型）</p>
+<p>格式：  public class Demo<t> implements Dao<t>{       }                //在接口名以及类名之后都要声明自定义泛型</t></t></p>
+<p>示例代码：    </p>
+<pre><code><span class="class"><span class="keyword">interface</span> <span class="title">Dao</span>&lt;<span class="title">T</span>&gt;</span>{
+
+  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(T t)</span></span>;    
+}
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Dao</span>&lt;<span class="title">T</span>&gt; </span>{
+
+  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+    Demo&lt;String&gt; d = <span class="keyword">new</span> Demo&lt;String&gt;();
+  }
+
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(T t)</span></span>{
+
+  }
+}
+</code></pre><h1 id="三、泛型的上下限">三、泛型的上下限</h1><p>泛型中通配符： ？ </p>
+<p>使用格式：</p>
+<p>? super Integer : 只能存储Integer或者是Integer父类元素。  泛型的下限</p>
+<p>? extends Number ： 只能存储Number或者是Number类型的子类数据。 泛型的上限</p>
+<p>示例代码：</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> Demo5 {
+
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">void</span> main(<span class="built_in">String</span>[] args) {
+    ArrayList&lt;Integer&gt; list1 = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();
+    ArrayList&lt;<span class="built_in">Number</span>&gt; list2 = <span class="keyword">new</span> ArrayList&lt;<span class="built_in">Number</span>&gt;();
+
+    HashSet&lt;<span class="built_in">String</span>&gt; <span class="keyword">set</span> = <span class="keyword">new</span> HashSet&lt;<span class="built_in">String</span>&gt;();
+    <span class="comment">//getData(set);</span>
+
+}
+
+<span class="comment">//泛型的上限</span>
+<span class="comment">//定义一个函数可以接收接收任意类型的集合对象， 要求接收的集合对象只能存储Number或者是Number的子类类型数据。</span>
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">void</span> getData(Collection&lt;? extends <span class="built_in">Number</span>&gt; c){
+}
+
+<span class="comment">//泛型的下限</span>
+<span class="comment">//定义一个函数可以接收接收任意类型的集合对象， 要求接收的集合对象只能存储Integer或者是Integer的父类类型数据。</span>
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">void</span> print(Collection&lt;? <span class="keyword">super</span> Integer&gt; c){       
+  }
+
+}
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/09/28/用hexo建立GitHub-Page/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">用hexo建立GitHub-Page</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Java中的泛型" data-title="Java中的泛型" data-url="http://yoursite.com/2015/10/05/Java中的泛型/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 崔伟健
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -15,7 +15,7 @@
 <meta property="og:description" content="第一次搭建Github-page的过程中遇见了不少问题。网上的教程很多，看起来眼花缭乱，在此根据自己的经验稍作整理。（windows环境）
 〇、Hexohexo是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github和Heroku上。作者是来自台湾的@tommy351.用作者的话来说Hexo是一套快速、简洁且高效的博客框架。
 类似于jekyll、Octopress、Word">
-<meta property="og:updated_time" content="2015-09-29T00:53:25.396Z">
+<meta property="og:updated_time" content="2015-10-05T07:48:34.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用hexo建立GitHub-Page">
 <meta name="twitter:description" content="第一次搭建Github-page的过程中遇见了不少问题。网上的教程很多，看起来眼花缭乱，在此根据自己的经验稍作整理。（windows环境）
@@ -116,7 +116,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/github/" style="font-size: 10px;">github</a>
+						<a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/github/" style="font-size: 10px;">github</a>
 					</div>
 				</section>
 				
@@ -255,11 +255,18 @@ Enter same passphrase again:（回车不要输入密码）
 <h2 id="5-_设置用户信息">5. 设置用户信息</h2><pre><code>$ git config --<span class="keyword">global</span> user.name <span class="string">"Yourusername"</span>   <span class="preprocessor">#GitHub用户名</span>
 $ git config --<span class="keyword">global</span> user.email  <span class="string">"Your email"</span>   <span class="preprocessor">#填写自己的邮箱</span>
 </code></pre><p>至此配置GitHub就已经完成了</p>
-<h1 id="三、上传本地的blog信息到_github">三、上传本地的blog信息到 github </h1><p>先进入 Hexo目录，在文件夹任意地方右键 Git Bash Here</p>
+<h1 id="三、上传本地的blog信息到_github">三、上传本地的blog信息到 github </h1><p><strong>最重要的一步，首先打开Hexo根目录下的 _config.yml 文件（推荐使用sublime），将文件最后几行改为如下形式：</strong></p>
+<pre><code><span class="attribute">deploy</span>: <span class="string"></span>
+  <span class="attribute">type</span>: <span class="string">git</span>
+  <span class="attribute">repository</span>: <span class="string">https://github.com/Simonic512/Simonic512.github.io.git</span>
+  <span class="attribute">branch</span>: <span class="string">master</span>
+</code></pre><p>需要注意的是每个冒号（半角）后都需要一个半角空格，Simonic512的位置替换成你的用户名。（如果不成功将git改为github再试一次）</p>
+<p>保存后进入 Hexo目录，在文件夹任意地方右键 Git Bash </p>
 <pre><code><span class="variable">$ </span>hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy &amp;&amp; hexo clean
 </code></pre><p>讲解一下这串命令含义：</p>
 <p>hexo clean : 清理 database 和 /public目录， /public目录里是生成的静态文件数据。<br>hexo generaet : 简写是 “hexo g” 命令是用来生成静态页面的 会创建 /public目录静态页面数据都在这个文件夹里。<br>hexo deploy ： 一键部署命令上面在 _config.yml文件中配置了部署信息。这个命令会帮助你一键部署。</p>
-<p>运行完这个命令，然后访问：<a href="http://Yourusername.github.io" target="_blank" rel="external">http://Yourusername.github.io</a> 看看是否能在互联网中访问。访问成功则说明你的 github-Page搭建成功。以后有关github的文章会随着自己的学习陆续更新，下一篇会继续分享有关clone主题、配置config信息来自定义自己的blog等内容。</p>
+<p>运行完这个命令，然后访问：<a href="http://Yourusername.github.io" target="_blank" rel="external">http://Yourusername.github.io</a> 看看是否能在互联网中访问。访问成功则说明你的 github-Page搭建成功。</p>
+<p>以后有关github的文章会随着自己的学习陆续更新，下一篇会继续分享有关clone主题、配置config信息来自定义自己的blog、如何发布你的第一篇文章等内容。</p>
 
       
     </div>
@@ -268,6 +275,15 @@ $ git config --<span class="keyword">global</span> user.email  <span class="stri
   
     
 <nav id="article-nav">
+  
+    <a href="/2015/10/05/Java中的泛型/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Java中的泛型
+        
+      </div>
+    </a>
   
   
     <a href="/2015/09/28/Java-多线程/" id="article-nav-older" class="article-nav-link-wrap">
