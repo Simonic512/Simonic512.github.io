@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>解析K-Means算法 | Simon&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在数据挖掘中，K-Means算法是一种cluster analysis的算法，其主要是来计算数据聚集的算法，主要通过不断地取离种子点最近均值的算法。
+问题
+K-Means算法主要解决的问题如下图所示。我们可以看到，在图的左边有一些点，我们用肉眼可以看出来有四个点群，但是我们怎么通过计算机程序找出这几个点群来呢？于是就出现了我们的K-Means算法。
+K-Means要解决的问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解析K-Means算法">
+<meta property="og:url" content="http://yoursite.com/2015/10/09/解析K-MEANS算法/index.html">
+<meta property="og:site_name" content="Simon's blog">
+<meta property="og:description" content="在数据挖掘中，K-Means算法是一种cluster analysis的算法，其主要是来计算数据聚集的算法，主要通过不断地取离种子点最近均值的算法。
+问题
+K-Means算法主要解决的问题如下图所示。我们可以看到，在图的左边有一些点，我们用肉眼可以看出来有四个点群，但是我们怎么通过计算机程序找出这几个点群来呢？于是就出现了我们的K-Means算法。
+K-Means要解决的问题">
+<meta property="og:image" content="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/0Z411NN-0.gif">
+<meta property="og:image" content="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/091301K62-1.jpg">
+<meta property="og:image" content="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/0913011622-2.gif">
+<meta property="og:image" content="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/0913012536-3.gif">
+<meta property="og:image" content="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/0913011109-4.gif">
+<meta property="og:image" content="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/0913012002-6.jpg">
+<meta property="og:updated_time" content="2015-10-09T13:50:32.123Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解析K-Means算法">
+<meta name="twitter:description" content="在数据挖掘中，K-Means算法是一种cluster analysis的算法，其主要是来计算数据聚集的算法，主要通过不断地取离种子点最近均值的算法。
+问题
+K-Means算法主要解决的问题如下图所示。我们可以看到，在图的左边有一些点，我们用肉眼可以看出来有四个点群，但是我们怎么通过计算机程序找出这几个点群来呢？于是就出现了我们的K-Means算法。
+K-Means要解决的问题">
+  
+    <link rel="alternative" href="/atom.xml" title="Simon&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">崔伟健</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">得到的都是侥幸，失去的才是人生。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2878590964/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Data-mining/" style="font-size: 20px;">Data mining</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/reprint/" style="font-size: 10px;">reprint</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">JLU在读计算机硕士。主修数据挖掘。一个每周运动八小时的胖子。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">崔伟健</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">崔伟健</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">得到的都是侥幸，失去的才是人生。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2878590964/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-解析K-MEANS算法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/09/解析K-MEANS算法/" class="article-date">
+  	<time datetime="2015-10-09T13:22:13.000Z" itemprop="datePublished">2015-10-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      解析K-Means算法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-mining/">Data mining</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reprint/">reprint</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在数据挖掘中，K-Means算法是一种cluster analysis的算法，其主要是来计算数据聚集的算法，主要通过不断地取离种子点最近均值的算法。</p>
+<p>问题</p>
+<p>K-Means算法主要解决的问题如下图所示。我们可以看到，在图的左边有一些点，我们用肉眼可以看出来有四个点群，但是我们怎么通过计算机程序找出这几个点群来呢？于是就出现了我们的K-Means算法。</p>
+<p><img src="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/0Z411NN-0.gif" alt="pic1" title="pic1"><br>K-Means要解决的问题</p>
+<a id="more"></a>
+<h1 id="算法概要">算法概要</h1><p>这个算法其实很简单，如下图所示： </p>
+<p><img src="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/091301K62-1.jpg" alt="pic2" title="pic2"></p>
+<p>从上图中，我们可以看到，A，B，C，D，E是五个在图中点。而灰色的点是我们的种子点，也就是我们用来找点群的点。有两个种子点，所以K=2。</p>
+<p>然后，K-Means的算法如下：</p>
+<p>随机在图中取K（这里K=2）个种子点。<br>然后对图中的所有点求到这K个种子点的距离，假如点Pi离种子点Si最近，那么Pi属于Si点群。（上图中，我们可以看到A，B属于上面的种子点，C，D，E属于下面中部的种子点）<br>接下来，我们要移动种子点到属于他的“点群”的中心。（见图上的第三步）<br>然后重复第2）和第3）步，直到，种子点没有移动（我们可以看到图中的第四步上面的种子点聚合了A，B，C，下面的种子点聚合了D，E）。<br>这个算法很简单，但是有些细节我要提一下，求距离的公式我不说了，大家有初中毕业水平的人都应该知道怎么算的。我重点想说一下“求点群中心的算法”。</p>
+<h2 id="求点群中心的算法">求点群中心的算法</h2><p>一般来说，求点群中心点的算法你可以很简的使用各个点的X/Y坐标的平均值。不过，我这里想告诉大家另三个求中心点的的公式：</p>
+<p>1）Minkowski Distance公式——λ可以随意取值，可以是负数，也可以是正数，或是无穷大。<br><img src="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/0913011622-2.gif" alt="pic3" title="pic3"></p>
+<p>2）Euclidean Distance公式——也就是第一个公式λ=2的情况<br><img src="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/0913012536-3.gif" alt="pic4" title="pic4"></p>
+<p>3）CityBlock Distance公式——也就是第一个公式λ=1的情况<br><img src="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/0913011109-4.gif" alt="pic5" title="pic5"></p>
+<p>这三个公式的求中心点有一些不一样的地方，我们看下图（对于第一个λ在0-1之间）。</p>
+<p><img src="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/0913012002-6.jpg" alt="pic6" title="pic6"><br>（1）Minkowski Distance     （2）Euclidean Distance    （3） CityBlock Distance</p>
+<p>上面这几个图的大意是他们是怎么个逼近中心的，第一个图以星形的方式，第二个图以同心圆的方式，第三个图以菱形的方式。</p>
+<h2 id="K-Means的演示">K-Means的演示</h2><p>如果你以”K Means Demo“为关键字到Google里查你可以查到很多演示。这里推荐一个演示：<a href="http://home.dei.polimi.it/matteucc/Clustering/tutorial_html/AppletKM.html" target="_blank" rel="external">http://home.dei.polimi.it/matteucc/Clustering/tutorial_html/AppletKM.html</a></p>
+<p>操作是，鼠标左键是初始化点，右键初始化“种子点”，然后勾选“Show History”可以看到一步一步的迭代。</p>
+<p>注：这个演示的链接也有一个不错的K Means Tutorial。</p>
+<h1 id="K-Means++算法">K-Means++算法</h1><p>K-Means主要有两个最重大的缺陷——都和初始值有关：</p>
+<p>K是事先给定的，这个K值的选定是非常难以估计的。很多时候，事先并不知道给定的数据集应该分成多少个类别才最合适。（ISODATA算法通过类的自动合并和分裂，得到较为合理的类型数目K）<br>K-Means算法需要用初始随机种子点来搞，这个随机种子点太重要，不同的随机种子点会有得到完全不同的结果。（K-Means++算法可以用来解决这个问题，其可以有效地选择初始点）<br>我在这里重点说一下K-Means++算法步骤：</p>
+<p>先从我们的数据库随机挑个随机点当“种子点”。<br>对于每个点，我们都计算其和最近的一个“种子点”的距离D(x)并保存在一个数组里，然后把这些距离加起来得到Sum(D(x))。<br>然后，再取一个随机值，用权重的方式来取计算下一个“种子点”。这个算法的实现是，先取一个能落在Sum(D(x))中的随机值Random，然后用Random -= D(x)，直到其&lt;=0，此时的点就是下一个“种子点”。<br>重复第（2）和第（3）步直到所有的K个种子点都被选出来。<br>进行K-Means算法。</p>
+<h1 id="K-Means算法应用">K-Means算法应用</h1><p>看到这里，你会说，K-Means算法看来很简单，而且好像就是在玩坐标点，没什么真实用处。而且，这个算法缺陷很多，还不如人工呢。是的，前面的例子只是玩二维坐标点，的确没什么意思。但是你想一下下面的几个问题：</p>
+<p>1）如果不是二维的，是多维的，如5维的，那么，就只能用计算机来计算了。</p>
+<p>2）二维坐标点的X，Y 坐标，其实是一种向量，是一种数学抽象。现实世界中很多属性是可以抽象成向量的，比如，我们的年龄，我们的喜好，我们的商品，等等，能抽象成向量的目的就是可以让计算机知道某两个属性间的距离。如：我们认为，18岁的人离24岁的人的距离要比离12岁的距离要近，鞋子这个商品离衣服这个商品的距离要比电脑要近，等等。</p>
+<p>只要能把现实世界的物体的属性抽象成向量，就可以用K-Means算法来归类了。</p>
+<p>在《k均值聚类(K-means)》 这篇文章中举了一个很不错的应用例子，作者用亚洲15支足球队的2005年到1010年的战绩做了一个向量表，然后用K-Means把球队归类，得出了下面的结果，呵呵。</p>
+<p>亚洲一流：日本，韩国，伊朗，沙特<br>亚洲二流：乌兹别克斯坦，巴林，朝鲜<br>亚洲三流：中国，伊拉克，卡塔尔，阿联酋，泰国，越南，阿曼，印尼<br>其实，这样的业务例子还有很多，比如，分析一个公司的客户分类，这样可以对不同的客户使用不同的商业策略，或是电子商务中分析商品相似度，归类商品，从而可以使用一些不同的销售策略，等等。</p>
+<p>最后给一个挺好的算法的幻灯片：<a href="http://www.cs.cmu.edu/~guestrin/Class/10701-S07/Slides/clustering.pdf" target="_blank" rel="external">http://www.cs.cmu.edu/~guestrin/Class/10701-S07/Slides/clustering.pdf</a></p>
+<p>文章来源于<a href="http://www.csdn.net/article/2012-07-03/2807073-k-means" title="原文链接" target="_blank" rel="external">CSDN</a>，作者陈皓。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/10/09/数据挖掘中的分类与聚类/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据挖掘中的分类与聚类</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="解析K-MEANS算法" data-title="解析K-Means算法" data-url="http://yoursite.com/2015/10/09/解析K-MEANS算法/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 崔伟健
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
