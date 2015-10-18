@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java设计模式-装饰者模式 | Simon&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="装饰者设计模式主要是利用多态，将子类对象作为参数互相传递（主要为了传递实现的函数），达到互相装饰的效果，从而减少代码重复率，优化代码结构。
+             装饰者模式结构图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java设计模式-装饰者模式">
+<meta property="og:url" content="http://yoursite.com/2015/10/18/Java设计模式-装饰者模式/index.html">
+<meta property="og:site_name" content="Simon's blog">
+<meta property="og:description" content="装饰者设计模式主要是利用多态，将子类对象作为参数互相传递（主要为了传递实现的函数），达到互相装饰的效果，从而减少代码重复率，优化代码结构。
+             装饰者模式结构图">
+<meta property="og:image" content="http://img.blog.csdn.net/20150906093320920">
+<meta property="og:updated_time" content="2015-10-18T12:45:05.790Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java设计模式-装饰者模式">
+<meta name="twitter:description" content="装饰者设计模式主要是利用多态，将子类对象作为参数互相传递（主要为了传递实现的函数），达到互相装饰的效果，从而减少代码重复率，优化代码结构。
+             装饰者模式结构图">
+  
+    <link rel="alternative" href="/atom.xml" title="Simon&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">崔伟健</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">得到的都是侥幸，失去的才是人生。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2878590964/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Data-mining/" style="font-size: 15px;">Data mining</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java设计模式/" style="font-size: 10px;">Java设计模式</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/reprint/" style="font-size: 10px;">reprint</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">JLU在读计算机硕士。主修数据挖掘。一个每周运动八小时的胖子。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">崔伟健</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">崔伟健</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">得到的都是侥幸，失去的才是人生。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2878590964/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Java设计模式-装饰者模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/18/Java设计模式-装饰者模式/" class="article-date">
+  	<time datetime="2015-10-18T12:31:11.000Z" itemprop="datePublished">2015-10-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java设计模式-装饰者模式
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java设计模式/">Java设计模式</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>装饰者设计模式主要是利用多态，将子类对象作为参数互相传递（主要为了传递实现的函数），达到互相装饰的效果，从而减少代码重复率，优化代码结构。</p>
+<p><img src="http://img.blog.csdn.net/20150906093320920" alt="pic1" title="装饰者设计模式结构图"><br>             装饰者模式结构图</p>
+<a id="more"></a>
+<h1 id="一段简单的程序：">一段简单的程序：</h1><p>/<em><br>    一家三口每个人都会工作，儿子的工作就是画画，母亲的工作就是在儿子的基础上做一个增强，不单止可以画画，还可以上涂料。<br>    爸爸的工作就是在妈妈基础上做了增强，就是上画框。
+</em>/</p>
+<pre><code><span class="class"><span class="keyword">interface</span> <span class="title">Work</span></span>{
+     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>;
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">implements</span> <span class="title">Work</span></span>{        <span class="comment">//所有装饰类都实现一个统一的接口或者继承同一个父类</span>
+    <span class="annotation">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>{
+        System.out.println(<span class="string">"画画..."</span>);
+    }
+}
+
+
+<span class="class"><span class="keyword">class</span> <span class="title">Mother</span> <span class="keyword">implements</span> <span class="title">Work</span></span>{
+     Work worker;                   <span class="comment">//需要被增强的类内部维护一个需要“继承”的类实例，但不使用继承        </span>
+     <span class="function"><span class="keyword">public</span> <span class="title">Mother</span><span class="params">(Work worker)</span></span>{
+        <span class="keyword">this</span>.worker = worker;
+    }
+    <span class="annotation">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>{
+        worker.work();             <span class="comment">//调用的哪个work方法？</span>
+        System.out.println(<span class="string">"给画上颜色.."</span>);
+    }
+}
+<span class="class"><span class="keyword">class</span> <span class="title">Father</span> <span class="keyword">implements</span> <span class="title">Work</span></span>{
+    <span class="comment">//需要被增强的类的引用</span>
+    Work worker;
+    <span class="function"><span class="keyword">public</span> <span class="title">Father</span><span class="params">(Work worker)</span></span>{
+        <span class="keyword">this</span>.worker = worker;
+    }
+    <span class="annotation">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>{
+        worker.work();
+        System.out.println(<span class="string">"上画框..."</span>);
+    }
+
+}
+
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo3</span> </span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+        Son s = <span class="keyword">new</span> Son();
+        s.work();
+        Mother m = <span class="keyword">new</span> Mather(s);            <span class="comment">//将Son对象实例作为参数传递进去，从而实现类似“继承”的功能</span>
+        m.work();
+        Father f = <span class="keyword">new</span> Father(m);            <span class="comment">//将Mother对象实例传入，Father对象实现三个功能</span>
+        f.work();                            <span class="comment">//如果将上一行替换成 Father f = new Father(s); 将出现什么样的输出？</span>
+        }
+}
+</code></pre><h1 id="二、装饰者设计模式(Decorator)的相关概念">二、装饰者设计模式(Decorator)的相关概念</h1><p>装饰者模式(Decorator)是一种结构式模式。动态地给一个对象添加一些额外的职责。就增加功能来说，装饰者模式相比生成子类更为灵活。同时还可以让这些装饰类互相装饰。</p>
+<h2 id="1-装饰者设计模式的步骤：">1.装饰者设计模式的步骤：</h2><p>  a. 在装饰类的内部维护一个被装饰类的引用。<br>  b. 让装饰类有一个共同的父类或者是父接口。</p>
+<p>具体过程：<br>1.Component : 定义一个对象接口，可以给这些对象动态地添加职责。</p>
+<pre><code><span class="class"><span class="keyword">interface</span> <span class="title">Component</span> </span>{
+     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span></span>;
+}
+ConcreteComponent : 实现 Component 定义的接口。
+<span class="class"><span class="keyword">class</span> <span class="title">ConcreteComponent</span> <span class="keyword">implements</span> <span class="title">Component</span> </span>{
+    <span class="annotation">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>{
+        System.out.println(<span class="string">"初始行为"</span>);
+    }
+}
+</code></pre><p>2.Decorator : 装饰抽象类，继承了 Component， 从外类来扩展 Component 类的功能，但对于 Component 来说，是无需知道 Decorator 的存在的。</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Decorator</span> <span class="keyword">implements</span> <span class="title">Component</span> </span>{
+    <span class="comment">// 维护一个 Component 对象，和 Component 形成聚合关系</span>
+    <span class="keyword">protected</span> Component component;
+    <span class="comment">// 传入要进一步修饰的对象</span>
+    <span class="function"><span class="keyword">public</span> <span class="title">Decorator</span><span class="params">(Component component)</span> </span>{
+    <span class="keyword">this</span>.component = component;
+        }
+    <span class="annotation">@Override</span>
+    <span class="comment">// 调用要修饰对象的原方法</span>
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>{
+    component.operation();
+    }
+    }
+</code></pre><p>3.ConcreteDecorator : 具体的装饰对象，起到给 Component 添加职责的功能。</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">ConcreteDecoratorA</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Decorator</span> {</span>
+    <span class="keyword">private</span> <span class="type">String</span> addedState = <span class="string">"新属性1"</span>;
+
+    public <span class="type">ConcreteDecoratorA</span>(<span class="type">Component</span> component) {
+        <span class="keyword">super</span>(component);
+    }
+
+    public void operation() {
+       <span class="keyword">super</span>.operation();
+       <span class="type">System</span>.out.println(<span class="string">"添加属性: "</span> + addedState);
+
+    }
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">ConcreteDecoratorB</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Decorator</span> {</span>
+    public <span class="type">ConcreteDecoratorB</span>(<span class="type">Component</span> component) {
+     <span class="keyword">super</span>(component);
+  }
+
+    public void operation() {
+       <span class="keyword">super</span>.operation();
+       <span class="type">AddedBehavior</span>();
+     }
+
+    public void <span class="type">AddedBehavior</span>() {
+
+    <span class="type">System</span>.out.println(<span class="string">"添加行为"</span>);
+   }
+
+}
+</code></pre><p>测试代码</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DecoratorPattern</span> {
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>{
+
+        Component component = <span class="keyword">new</span> ConcreteComponent();
+
+        component.operation();
+
+        System.<span class="keyword">out</span>.println(<span class="string">"======================================"</span>);
+
+        Decorator decoratorA = <span class="keyword">new</span> ConcreteDecoratorA(component);
+
+        decoratorA.operation();
+
+        System.<span class="keyword">out</span>.println(<span class="string">"======================================"</span>);
+
+        Decorator decoratorB = <span class="keyword">new</span> ConcreteDecoratorB(decoratorA);
+
+        decoratorB.operation();
+  }
+
+}
+</code></pre><p>运行结果：</p>
+<pre><code><span class="header">初始行为
+======================================</span>
+初始行为
+<span class="header">添加属性: 新属性1
+======================================</span>
+初始行为
+添加属性: 新属性1
+添加行为
+</code></pre><h2 id="2-装饰者设计模式的应用场景">2.装饰者设计模式的应用场景</h2><p>a.需要动态的、透明的为一个对象添加职责，即不影响其他对象。<br>b.需要动态的给一个对象添加功能，这些功能可以再动态的撤销。<br>c.需要增加由一些基本功能的排列组合而产生的非常大量的功能，从而使继承关系变的不现实。<br>d.当不能采用生成子类的方法进行扩充时。一种情况是，可能有大量独立的扩展，为支持每一种组合将产生大量的子类，使得子类数目呈爆炸性增长。另一种情况可能是因为类定义被隐藏，或类定义不能用于生成子类。</p>
+<h2 id="3-装饰者设计模式的相关要点：">3.装饰者设计模式的相关要点：</h2><p>a.装饰对象和真实对象有相同的接口。这样客户端对象就能以和真实对象相同的方式和装饰对象交互。<br>b.装饰对象包含一个真实对象的引用（reference）。<br>c.装饰对象接受所有来自客户端的请求。它把这些请求转发给真实的对象。<br>d.装饰对象可以在转发这些请求以前或以后增加一些附加功能。这样就确保了在运行时，不用修改给定对象的结构就可以在外部增加附加的功能。在面向对象的设计中，通常是通过继承来实现对给定类的功能扩展。</p>
+<h2 id="4-继承实现的增强类和修饰模式实现的增强类有何区别？">4.继承实现的增强类和修饰模式实现的增强类有何区别？</h2><p>继承实现的增强类：<br>  优点：代码结构清晰，而且实现简单.<br>  缺点：对于每一个的需要增强的类都要创建具体的子类来帮助其增强，这样会导致继承体系过于庞大。</p>
+<p>装饰者设计模式实现的增强类：<br>  优点：内部可以通过多态技术对多个需要增强的类进行增强，可以使这些装饰类达到互相装饰的效果，使用比较灵活。<br>  缺点：需要内部通过多态技术维护需要被增强的类的实例。进而使得代码稍微复杂。</p>
+<h1 id="三、装饰者设计模式在IO中的应用">三、装饰者设计模式在IO中的应用</h1><pre><code><span class="comment">/*
+需求1： 编写一个类拓展BufferedReader的功能， 增强readLine方法返回 的字符串带有行号。
+需求2：编写一个类拓展BufferedReader的功能， 增强readLine方法返回 的字符串带有分号。
+需求3： 编写一个类拓展BufferedReader的功能， 增强readLine方法返回 的字符串带有双引号。
+需求4： 编写一个类拓展BufferedReader的功能， 增强readLine方法返回 的字符串带有行号+ 分号。
+*/</span>
+<span class="keyword">import</span> java.io.IOException;
+
+
+<span class="comment">//带行号的缓冲输入字符流</span>
+ class BufferedLineNum2  extends <span class="keyword">BufferedReader</span>{  
+
+    <span class="comment">//在内部维护一个被装饰类的引用。</span>
+    <span class="keyword">BufferedReader</span> bufferedReader;
+
+    <span class="built_in">int</span> count = <span class="number">1</span>;
+
+    <span class="keyword">public</span> BufferedLineNum2(<span class="keyword">BufferedReader</span> bufferedReader){
+        <span class="keyword">super</span>(bufferedReader);<span class="comment">// 注意： 该语句没有任何的作用，只不过是为了让代码不报错。</span>
+        <span class="keyword">this</span>.bufferedReader = bufferedReader;
+    }
+
+
+    <span class="keyword">public</span> <span class="keyword">String</span> readLine() <span class="keyword">throws</span> IOException{
+        <span class="keyword">String</span> <span class="built_in">line</span> = bufferedReader.readLine();
+        <span class="keyword">if</span>(<span class="built_in">line</span>==<span class="keyword">null</span>){
+            <span class="keyword">return</span> <span class="keyword">null</span>;
+        }
+        <span class="built_in">line</span> = count+<span class="string">" "</span>+<span class="built_in">line</span>;
+        count++;
+        <span class="keyword">return</span> <span class="built_in">line</span>;
+    }
+} 
+
+
+<span class="comment">//带分号缓冲输入字符流</span>
+class BufferedSemi2 extends <span class="keyword">BufferedReader</span>{  <span class="comment">//为什么要继承?  是为了让这些装饰类的对象可以作为参数进行传递，达到互相装饰 的效果。</span>
+
+    <span class="comment">//在内部维护一个被装饰类的引用。</span>
+    <span class="keyword">BufferedReader</span> bufferedReader;
+
+
+    <span class="keyword">public</span> BufferedSemi2(<span class="keyword">BufferedReader</span> bufferedReader){ <span class="comment">// new BuffereLineNum();</span>
+        <span class="keyword">super</span>(bufferedReader);<span class="comment">// 注意： 该语句没有任何的作用，只不过是为了让代码不报错。</span>
+        <span class="keyword">this</span>.bufferedReader = bufferedReader;
+    }
+
+    <span class="keyword">public</span> <span class="keyword">String</span> readLine() <span class="keyword">throws</span> IOException{
+        <span class="keyword">String</span> <span class="built_in">line</span> = bufferedReader.readLine();  <span class="comment">//如果这里的ReadLine方法是调用了buffereLineNum的readLine方法，问题马上解决。</span>
+        <span class="keyword">if</span>(<span class="built_in">line</span>==<span class="keyword">null</span>){
+            <span class="keyword">return</span> <span class="keyword">null</span>;
+        }
+        <span class="built_in">line</span> = <span class="built_in">line</span> +<span class="string">";"</span>;
+        <span class="keyword">return</span> <span class="built_in">line</span>;
+    }
+
+}
+
+<span class="comment">//缓冲类带双引号</span>
+class BufferedQuto2 extends <span class="keyword">BufferedReader</span>{
+
+    <span class="comment">//在内部维护一个被装饰的类</span>
+    <span class="keyword">BufferedReader</span> bufferedReader;
+
+    <span class="keyword">public</span> BufferedQuto2(<span class="keyword">BufferedReader</span> bufferedReader){  <span class="comment">//new  BufferedSemi2();</span>
+        <span class="keyword">super</span>(bufferedReader) ; <span class="comment">//只是为了让代码不报错..</span>
+        <span class="keyword">this</span>.bufferedReader = bufferedReader;
+    }
+
+    <span class="keyword">public</span> <span class="keyword">String</span> readLine() <span class="keyword">throws</span> IOException{
+        <span class="keyword">String</span> <span class="built_in">line</span> = bufferedReader.readLine();  <span class="comment">//如果这里的ReadLine方法是调用了buffereLineNum的readLine方法，问题马上解决。</span>
+        <span class="keyword">if</span>(<span class="built_in">line</span>==<span class="keyword">null</span>){
+            <span class="keyword">return</span> <span class="keyword">null</span>;
+        }
+        <span class="built_in">line</span> = <span class="string">"\""</span>+<span class="built_in">line</span> +<span class="string">"\""</span>;
+        <span class="keyword">return</span> <span class="built_in">line</span>;
+    }
+}
+
+
+<span class="keyword">public</span> class Demo2 {
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) <span class="keyword">throws</span> IOException {
+        File file = <span class="keyword">new</span> File(<span class="string">"F:\\Demo1.java"</span>);
+        FileReader fileReader = <span class="keyword">new</span> FileReader(file);
+        <span class="comment">//建立缓冲输入字符流</span>
+        <span class="keyword">BufferedReader</span> bufferedReader = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(fileReader);
+        <span class="comment">//建立带行号的缓冲输入字符流</span>
+        BufferedLineNum2 bufferedLineNum = <span class="keyword">new</span> BufferedLineNum2(bufferedReader);
+
+        <span class="comment">//带分号的缓冲输入字符流</span>
+        BufferedSemi2 bufferedSemi2 = <span class="keyword">new</span> BufferedSemi2(bufferedLineNum);
+
+        <span class="comment">//带双引号的缓冲输入字符流</span>
+        BufferedQuto2 bufferedQuto2 = <span class="keyword">new</span>  BufferedQuto2(bufferedSemi2);
+
+        <span class="keyword">String</span> <span class="built_in">line</span> = <span class="keyword">null</span>;
+        <span class="keyword">while</span>((<span class="built_in">line</span> = bufferedQuto2.readLine())!=<span class="keyword">null</span>){
+            System.out.<span class="built_in">println</span>(<span class="built_in">line</span>);
+        }
+        }
+}
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/10/09/解析K-MEANS算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">解析K-Means算法</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Java设计模式-装饰者模式" data-title="Java设计模式-装饰者模式" data-url="http://yoursite.com/2015/10/18/Java设计模式-装饰者模式/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 崔伟健
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
