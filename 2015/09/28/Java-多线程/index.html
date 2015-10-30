@@ -19,7 +19,7 @@
 “利用对象，可将一个程序分割成相互独立的区域。我们通常也需要讲一个程序转换成多个独立运行的子任务，像这样的每一个子任务都叫做一个线程（Thread）”                                  –     Think in Java
 
 每个 Java 程序都至少有两个线程独立运行：main 线程以及 Jav">
-<meta property="og:updated_time" content="2015-09-29T00:56:39.268Z">
+<meta property="og:updated_time" content="2015-10-27T13:57:17.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 多线程">
 <meta name="twitter:description" content="进程是正在运行的程序。而线程是进程的执行路径（负责代码的执行）。
@@ -292,10 +292,13 @@
 <p> currentThread()方法：返回当前线程对象。 A线程执行A线程返回。</p>
 <p> getPriority()：返回线程的优先级。（默认为5，Java线程数字越大优先级越高，1~10）</p>
 <p> setPriority(): 设置线程的优先级。</p>
+<p> join(): ：“等待该线程终止”，这里需要理解的就是该线程是指的主线程等待子线程的终止。<strong>也就是在子线程调用了join()方法后面的代码，只有等到子线程结束了才能执行。</strong></p>
 <p> ##线程通讯方法：</p>
 <p> wait(); 等待</p>
 <p> notify(); 唤醒 </p>
 <p> 这两个方法属于Object对象，只能在同步代码块中使用，由锁对象调用。一旦执行wait()方法将会释放锁对象。</p>
+<h1 id="四、网易2014校招笔试题"> 四、网易2014校招笔试题</h1><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//求输出</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Text</span> <span class="title">implements</span> <span class="title">Runnable</span>&#123;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) throws InterruptedException </span>&#123;</span><br><span class="line">             Thread t=<span class="keyword">new</span> Thread(<span class="keyword">new</span> Text());</span><br><span class="line">             t.start();</span><br><span class="line">             System.<span class="keyword">out</span>.print(<span class="string">"m1"</span>);</span><br><span class="line">             t.<span class="keyword">join</span>();</span><br><span class="line">             System.<span class="keyword">out</span>.print(<span class="string">"m2"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             System.<span class="keyword">out</span>.print(<span class="string">"r1"</span>);</span><br><span class="line">             System.<span class="keyword">out</span>.print(<span class="string">"r2"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调试输出是r1r2m1m2/m1r1r2m2/r1m1r2/m2 由于join()方法的调用 m2 一定是最后输出。</p>
 <p>–wait for update</p>
 
       
