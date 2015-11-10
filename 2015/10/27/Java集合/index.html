@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Java集合 | Simon&#39;s blog</title>
+  <title>Java-集合 | Simon&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Java是面向对象的语言，实际操作中经常会遇到对多个对象进行操作的情况。但StringBuffer类存在只能操作字符串、数组类存在必须定义长度的问题，Java语言为我们提供了集合来操作动态的一组对象。同时Java中的集合类库也将常用的基本数据结构封装起来供开发者使用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java集合">
+<meta property="og:title" content="Java-集合">
 <meta property="og:url" content="http://yoursite.com/2015/10/27/Java集合/index.html">
 <meta property="og:site_name" content="Simon's blog">
 <meta property="og:description" content="Java是面向对象的语言，实际操作中经常会遇到对多个对象进行操作的情况。但StringBuffer类存在只能操作字符串、数组类存在必须定义长度的问题，Java语言为我们提供了集合来操作动态的一组对象。同时Java中的集合类库也将常用的基本数据结构封装起来供开发者使用。">
-<meta property="og:updated_time" content="2015-10-30T04:00:39.938Z">
+<meta property="og:updated_time" content="2015-10-31T04:36:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java集合">
+<meta name="twitter:title" content="Java-集合">
 <meta name="twitter:description" content="Java是面向对象的语言，实际操作中经常会遇到对多个对象进行操作的情况。但StringBuffer类存在只能操作字符串、数组类存在必须定义长度的问题，Java语言为我们提供了集合来操作动态的一组对象。同时Java中的集合类库也将常用的基本数据结构封装起来供开发者使用。">
   
     <link rel="alternative" href="/atom.xml" title="Simon&#39;s blog" type="application/atom+xml">
@@ -110,7 +110,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Data-mining/" style="font-size: 15px;">Data mining</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java设计模式/" style="font-size: 10px;">Java设计模式</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/reprint/" style="font-size: 10px;">reprint</a>
+						<a href="/tags/Data-mining/" style="font-size: 15px;">Data mining</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java设计模式/" style="font-size: 10px;">Java设计模式</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/reprint/" style="font-size: 10px;">reprint</a>
 					</div>
 				</section>
 				
@@ -191,7 +191,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java集合
+      Java-集合
     </h1>
   
 
@@ -239,14 +239,14 @@ boolean <span class="function"><span class="title">isEmpty</span><span class="pa
 </code></pre><h2 id="2-集合的遍历"><strong>2.集合的遍历</strong></h2><p>集合的遍历通常有两种方式，传统的迭代器方式以及JDK1.5后新加入的for-each语句的方式（增强for循环）</p>
 <p>2.1 迭代器 Iterator<e> iterator()<br>iterator()方法是java.lang.Iterable接口,被Collection继承。<br>Java 中的迭代器对象类似于C类语言中的指针概念，但迭代器在抓取集合元素的过程中只允许单向移动。（ListIterator 可以对List实现类的集合进行双向遍历）</e></p>
 <p><strong>需要注意的是，迭代器的“指针”指向的实际上是元素之前的位置，而不是元素上。</strong></p>
-<p>常用的方法有<br>　iterator()    要求容器返回一个Iterator。第一次调用Iterator的next()方法时，它返回序列的第一个元素。<br>  next()        获得序列中的下一个元素。<br>  hasNext()     检查序列中是否还有元素。<br>  remove()      将迭代器<strong>新返回的</strong>元素删除。</p>
+<p>常用的方法有</p>
+<p>iterator()    要求容器返回一个Iterator。第一次调用Iterator的next()方法时，它返回序列的第一个元素。<br>next()        获得序列中的下一个元素。<br>hasNext()     检查序列中是否还有元素。<br>remove()      将迭代器<strong>新返回的</strong>元素删除。</p>
 <p>iterator 中没有 add 方法，当获取到某个集合的迭代器对象时，迭代器就已经知道集合中所有元素的引用，当再次添加元素时，迭代器是不知道的，这就造成了两 者的不一致，JVM会抛出ConcurrentModificationException异常。</p>
-<p>一个简单的例子：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">list l = new <span class="type">ArrayList</span>();</span><br><span class="line">l.add(<span class="string">"aa"</span>);</span><br><span class="line">l.add(<span class="string">"bb"</span>);</span><br><span class="line">l.add(<span class="string">"cc"</span>);</span><br><span class="line">/*迭代器用于<span class="keyword">while</span>循环</span><br><span class="line"><span class="type">Iterator</span> iter = l.<span class="keyword">iterator</span>();</span><br><span class="line"><span class="keyword">while</span>(iter.hasNext())&#123;</span><br><span class="line"> <span class="type">String</span> str = (<span class="type">String</span>) iter.next();</span><br><span class="line"> <span class="type">System</span>.<span class="keyword">out</span>.println(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>2.2 for-each 语句</p>
+<p>一个简单的例子：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">list l = new <span class="type">ArrayList</span>();</span><br><span class="line">l.add(<span class="string">"aa"</span>);</span><br><span class="line">l.add(<span class="string">"bb"</span>);</span><br><span class="line">l.add(<span class="string">"cc"</span>);</span><br><span class="line">/*迭代器用于<span class="keyword">while</span>循环</span><br><span class="line"><span class="type">Iterator</span> iter = l.<span class="keyword">iterator</span>();</span><br><span class="line"><span class="keyword">while</span>(iter.hasNext())&#123;</span><br><span class="line"> <span class="type">String</span> str = (<span class="type">String</span>) iter.next();</span><br><span class="line"> <span class="type">System</span>.<span class="keyword">out</span>.println(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.2 for-each 语句（增强for循环）</p>
 <p>for-each 循环能以一种非常简洁的方式对集合中的元素进行遍历（数组等也可以），如下所示：</p>
-<p>  for (Object o : collection)<br>    System.out.println(o);  </p>
-<p>三、List 集合</p>
-<p>List接口对Collection进行了简单的扩充，它的具体实现类常用的有ArrayList和LinkedList，具有元素排列有序、元素可重复的特征。可以将仸何东西放到一个List容器中，并在需要时从中取出。ArrayList从其命名中可以看出它是一种类似数组的形式进行存储，实际上它在底层维护了一个Object数组，在内存中进行连续存储，因此它的随机访问速度极快（利用索引值），但不适合对其中的元素进行增删。而 LinkedList的内部实现是链表，它适合于在链表中间需要频繁进行插入和删除操作，而随机访问需要遍历链表因此效率较低。</p>
+<p>for (Object o : collection)<br>  System.out.println(o);  </p>
+<h1 id="三、List_集合">三、List 集合</h1><p>List接口对Collection进行了简单的扩充，它的具体实现类常用的有ArrayList和LinkedList，具有元素排列有序、元素可重复的特征。可以将仸何东西放到一个List容器中，并在需要时从中取出。ArrayList从其命名中可以看出它是一种类似数组的形式进行存储，实际上它在底层维护了一个Object数组，在内存中进行连续存储，因此它的随机访问速度极快（利用索引值），但不适合对其中的元素进行增删。而 LinkedList的内部实现是链表，它适合于在链表中间需要频繁进行插入和删除操作，而随机访问需要遍历链表因此效率较低。</p>
 <h2 id="1-List集合的基本方法">1.List集合的基本方法</h2><p>List 集合类实现了 Collection 接口的全部方法，同时还添加了一些新的方法：</p>
 <p>addAll()和inserts()两个方法进行元素的批量插入操作。</p>
 <p> E get(int index)<br> E set(int index, E element)<br> void add(int index, E element)<br> E remove(int index)                        //这些方法可以通过传入索引值与集合两个参数使用。</p>
@@ -301,9 +301,18 @@ boolean <span class="function"><span class="title">isEmpty</span><span class="pa
     
 <nav id="article-nav">
   
+    <a href="/2015/11/10/MacText/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          MacText
+        
+      </div>
+    </a>
+  
   
     <a href="/2015/10/23/Java-反射详解/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java 反射详解</div>
+      <div class="article-nav-title">Java-反射</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -332,7 +341,7 @@ boolean <span class="function"><span class="title">isEmpty</span><span class="pa
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Java集合" data-title="Java集合" data-url="http://yoursite.com/2015/10/27/Java集合/"></div>
+	<div class="ds-thread" data-thread-key="Java集合" data-title="Java-集合" data-url="http://yoursite.com/2015/10/27/Java集合/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
