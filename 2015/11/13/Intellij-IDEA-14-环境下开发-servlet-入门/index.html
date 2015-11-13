@@ -17,13 +17,13 @@ Java Web 服务器 ：tomcat8.0.28
 IDE： Intellij IDEA 14
 Java Web 服务器 ：tomcat8.0.28 
 选择tar.gz格式文件包，并解压到常用目录下安装，本人解压路径为 /Users/simon/tomcat ，(将tomcat8.0.28文件夹重命名为tomcat)，后文中均以此为例。">
-<meta property="og:image" content="http://yoursite.com/11132.png">
-<meta property="og:image" content="http://yoursite.com/11131.png">
-<meta property="og:image" content="http://yoursite.com/11133.png">
-<meta property="og:image" content="http://yoursite.com/11134.png">
-<meta property="og:image" content="http://yoursite.com/11135.png">
-<meta property="og:image" content="http://yoursite.com/11136.png">
-<meta property="og:updated_time" content="2015-11-13T11:52:12.000Z">
+<meta property="og:image" content="http://7xoaxb.com1.z0.glb.clouddn.com/11132.png">
+<meta property="og:image" content="http://7xoaxb.com1.z0.glb.clouddn.com/11131.png">
+<meta property="og:image" content="http://7xoaxb.com1.z0.glb.clouddn.com/11133.png">
+<meta property="og:image" content="http://7xoaxb.com1.z0.glb.clouddn.com/11134.png">
+<meta property="og:image" content="http://7xoaxb.com1.z0.glb.clouddn.com/11135.png">
+<meta property="og:image" content="http://7xoaxb.com1.z0.glb.clouddn.com/11136.png">
+<meta property="og:updated_time" content="2015-11-13T12:24:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Intellij IDEA 14 环境下开发 servlet 入门">
 <meta name="twitter:description" content="一、开发环境与前期准备1.开发环境Mac OS X EI capitan 10.11.1
@@ -236,14 +236,14 @@ Java Web 服务器 ：tomcat8.0.28
 <p>端口配置 ./tomcat/conf/server.xml 文件中 更改 Connector 标签中的 port 属性为需要的端口即可。<br>用户配置 ./tomcat/conf/tomcat-users.xml 中 <tomcat-users>节点中添加：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">user</span> <span class="attribute">username</span>=<span class="value">"username"</span> <span class="attribute">password</span>=<span class="value">“password"</span> <span class="attribute">roles</span>=<span class="value">"manager-gui"</span> /&gt;</span></span><br></pre></td></tr></table></figure></tomcat-users></p>
 <p>可以添加用户。</p>
 <h1 id="二、在_IDEA_中建立第一个_web_应用">二、在 IDEA 中建立第一个 web 应用</h1><h2 id="1-_新建servlet">1. 新建servlet</h2><p>直接在 IDEA 中新建一个,project 在JAVA EE的选项中勾选 Web Application</p>
-<p><img src="11132.png" alt="web app"></p>
+<p><img src="http://7xoaxb.com1.z0.glb.clouddn.com/11132.png" alt="pic1" title="pic1"></p>
 <p>生成的project目录结构如下：</p>
-<p><img src="11131.png" alt="project"></p>
+<p><img src="http://7xoaxb.com1.z0.glb.clouddn.com/11131.png" alt="pic2" title="pic2"></p>
 <p>在src目录下新建一个 servlet （名为ServletDemo）</p>
-<p><img src="11133.png" alt="servlet"></p>
+<p><img src="http://7xoaxb.com1.z0.glb.clouddn.com/11133.png" alt="pic3" title="pic3"></p>
 <p>2.导入 servlet-api.jar 包</p>
 <p>commond+; 打开 project structure 左侧选择 modules 右侧选择 dependencies 点击下方加号 添加 jar 包 (servlet-api.jar 在 tomcat/lib 目录下)</p>
-<p><img src="11134.png" alt="jar"></p>
+<p><img src="http://7xoaxb.com1.z0.glb.clouddn.com/11134.png" alt="pic4" title="pic4"></p>
 <h2 id="3-配置代码">3.配置代码</h2><p>可以在 src 下面的 servlet.java 文件下随便写一些代码（类的结构不能变），比如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ServletDemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * Created by simon on 15/11/11.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFirstServlet</span> <span class="keyword">extends</span> <span class="title">javax</span>.<span class="title">servlet</span>.<span class="title">http</span>.<span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)</span> <span class="keyword">throws</span> javax.servlet.ServletException, IOException </span>&#123;</span><br><span class="line">        response.setContentType(<span class="string">"text/html"</span>);</span><br><span class="line">        PrintWriter out = response.getWriter();</span><br><span class="line">        out.println(<span class="string">"&lt;html&gt;"</span>);</span><br><span class="line">        out.println(<span class="string">"&lt;head&gt;"</span>);</span><br><span class="line">        out.println(<span class="string">"&lt;title&gt;Hello World!&lt;/title&gt;"</span>);</span><br><span class="line">        out.println(<span class="string">"&lt;/head&gt;"</span>);</span><br><span class="line">        out.println(<span class="string">"&lt;body&gt;"</span>);</span><br><span class="line">        out.println(<span class="string">"&lt;h1&gt;Hello World!&lt;/h1&gt;"</span>);</span><br><span class="line">        out.println(<span class="string">"&lt;/body&gt;"</span>);</span><br><span class="line">        out.println(<span class="string">"&lt;/html&gt;"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>web目录下面的 web.xml也需要进行配置，比如：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">web-app</span> <span class="attribute">xmlns</span>=<span class="value">"http://xmlns.jcp.org/xml/ns/javaee"</span></span><br><span class="line">         <span class="attribute">xmlns:xsi</span>=<span class="value">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">         <span class="attribute">xsi:schemaLocation</span>=<span class="value">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"</span></span><br><span class="line">         <span class="attribute">version</span>=<span class="value">"3.1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">servlet-name</span>&gt;</span>MyFirstServlet<span class="tag">&lt;/<span class="title">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">servlet-class</span>&gt;</span>ServletDemo.MyFirstServlet<span class="tag">&lt;/<span class="title">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">servlet-name</span>&gt;</span>MyFirstServlet<span class="tag">&lt;/<span class="title">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">url-pattern</span>&gt;</span>/MyWeb<span class="tag">&lt;/<span class="title">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -253,9 +253,9 @@ Java Web 服务器 ：tomcat8.0.28
 <p>至此，代码部分全部完成。下面需要连接tomcat与IDEA，以在本地服务器上运行这个动态网站。</p>
 <h1 id="三、在_IDEA_上运行_tomcat">三、在 IDEA 上运行 tomcat</h1><p>Java Web项目无法单独运行，它需要一个程序来承载（Host）它，现在我们使用Tomcat来承载这个Web程序。</p>
 <p>首先我们要配置好Tomcat，Cmd+, 打开IntelliJ的配置。 如图所示添加tomcat的根目录。</p>
-<p><img src="11135.png" alt="tomcat"></p>
+<p><img src="http://7xoaxb.com1.z0.glb.clouddn.com/11135.png" alt="pic5" title="pic5"></p>
 <p>然后打开菜单中的 run/edit configurations 左上角加号，选择 tomcat server——local<br>然后如下图所示配置： (右下角若出现警告点击 fix 修复即可)</p>
-<p><img src="11136.png" alt="run"></p>
+<p><img src="http://7xoaxb.com1.z0.glb.clouddn.com/11136.png" alt="pic6" title="pic6"></p>
 <p>这次可以跑了，<shift>+<f10>。注意看IntelliJ的输出窗口里有什么提示信息，如果有，想想看是什么原因，（出现红字也不要紧张）如果前面的配置无误，一般都是端口被占用了。</f10></shift></p>
 <p>运行时 tomcat 会默认打开 <a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a> 也就是index.jsp的位置，这时候是一个静态页面。如果想看到自己写的动态页面，请手动打开 <a href="http://localhost:8080/MyWeb" target="_blank" rel="external">http://localhost:8080/MyWeb</a> （根据刚才的 servlet-map 配置文件）。</p>
 
