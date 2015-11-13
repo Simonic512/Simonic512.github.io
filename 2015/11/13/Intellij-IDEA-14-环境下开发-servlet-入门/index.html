@@ -8,8 +8,7 @@
   <meta name="description" content="一、开发环境与前期准备1.开发环境Mac OS X EI capitan 10.11.1
 IDE： Intellij IDEA 14
 Java Web 服务器 ：tomcat8.0.28 
-选择tar.gz格式文件包，并解压到常用目录下安装，本人解压路径为 /Users/simon/tomcat ，(将tomcat8.0.28文件夹重命名为tomcat)，后文中均以此为例。
-2.tomcat 入门">
+选择tar.gz格式文件包，并解压到常用目录下安装，本人解压路径为 /Users/simon/tomcat ，(将tomcat8.0.28文件夹重命名为tomcat)，后文中均以此为例。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Intellij IDEA 14 环境下开发 servlet 入门">
 <meta property="og:url" content="http://yoursite.com/2015/11/13/Intellij-IDEA-14-环境下开发-servlet-入门/index.html">
@@ -17,22 +16,20 @@ Java Web 服务器 ：tomcat8.0.28
 <meta property="og:description" content="一、开发环境与前期准备1.开发环境Mac OS X EI capitan 10.11.1
 IDE： Intellij IDEA 14
 Java Web 服务器 ：tomcat8.0.28 
-选择tar.gz格式文件包，并解压到常用目录下安装，本人解压路径为 /Users/simon/tomcat ，(将tomcat8.0.28文件夹重命名为tomcat)，后文中均以此为例。
-2.tomcat 入门">
+选择tar.gz格式文件包，并解压到常用目录下安装，本人解压路径为 /Users/simon/tomcat ，(将tomcat8.0.28文件夹重命名为tomcat)，后文中均以此为例。">
 <meta property="og:image" content="http://yoursite.com/11132.png">
 <meta property="og:image" content="http://yoursite.com/11131.png">
 <meta property="og:image" content="http://yoursite.com/11133.png">
 <meta property="og:image" content="http://yoursite.com/11134.png">
 <meta property="og:image" content="http://yoursite.com/11135.png">
 <meta property="og:image" content="http://yoursite.com/11136.png">
-<meta property="og:updated_time" content="2015-11-13T11:49:19.000Z">
+<meta property="og:updated_time" content="2015-11-13T11:52:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Intellij IDEA 14 环境下开发 servlet 入门">
 <meta name="twitter:description" content="一、开发环境与前期准备1.开发环境Mac OS X EI capitan 10.11.1
 IDE： Intellij IDEA 14
 Java Web 服务器 ：tomcat8.0.28 
-选择tar.gz格式文件包，并解压到常用目录下安装，本人解压路径为 /Users/simon/tomcat ，(将tomcat8.0.28文件夹重命名为tomcat)，后文中均以此为例。
-2.tomcat 入门">
+选择tar.gz格式文件包，并解压到常用目录下安装，本人解压路径为 /Users/simon/tomcat ，(将tomcat8.0.28文件夹重命名为tomcat)，后文中均以此为例。">
   
     <link rel="alternative" href="/atom.xml" title="Simon&#39;s blog" type="application/atom+xml">
   
@@ -228,7 +225,7 @@ Java Web 服务器 ：tomcat8.0.28
         <h1 id="一、开发环境与前期准备">一、开发环境与前期准备</h1><h2 id="1-开发环境">1.开发环境</h2><p>Mac OS X EI capitan 10.11.1</p>
 <p>IDE： Intellij IDEA 14</p>
 <p>Java Web 服务器 ：<a href="http://tomcat.apache.org/download-80.cgi" title="下载" target="_blank" rel="external">tomcat8.0.28</a> </p>
-<p>选择tar.gz格式文件包，并解压到常用目录下安装，本人解压路径为 /Users/simon/tomcat ，(将tomcat8.0.28文件夹重命名为tomcat)，后文中均以此为例。</p>
+<p>选择tar.gz格式文件包，并解压到常用目录下安装，本人解压路径为 /Users/simon/tomcat ，(将tomcat8.0.28文件夹重命名为tomcat)，后文中均以此为例。<br><a id="more"></a></p>
 <h2 id="2-tomcat_入门">2.tomcat 入门</h2><p>Tomcat是由Apache软件基金会下属的Jakarta项目开发的一个Servlet容器，按照Sun Microsystems提供的技术规范，实现了对Servlet和JavaServer Page（JSP）的支持，并提供了作为Web服务器的一些特有功能，如Tomcat管理和控制平台、安全域管理和Tomcat阀等。由于Tomcat本身也内含了一个HTTP服务器，它也可以被视作一个单独的Web服务器。但是，不能将Tomcat和Apache Web服务器混淆，Apache Web Server是一个用C语言实现的HTTP web server；这两个HTTP web server不是捆绑在一起的。Apache Tomcat包含了一个配置管理工具，也可以通过编辑XML格式的配置文件来进行配置。</p>
 <p>2.1 文件包中的基本文件结构：（一些 bat 批处理文件为 windows 系统专用，可以删除）</p>
 <p>bin 存放启动和关闭tomcat脚本<br>conf 包含不同的配置文件,server.xml(Tomcat的主要配置文件)和web.xml<br>work 存放jsp编译后产生的class文件<br>webapp 存放应用程序示例，以后你要部署的应用程序也要放到此目录<br>logs 存放日志文件<br>lib/japser/common 这三个目录主要存放tomcat所需的jar文件 </p>
