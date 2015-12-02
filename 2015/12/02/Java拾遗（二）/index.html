@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java拾遗（二） | Simon&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、Java 枚举类Java枚举类可以限制取值，实现单例设计模式等功能。
+枚举类的构造方法是用private修饰的。枚举类的所有实例必须在类的第一行列出，否则这个枚举类不会产生对象。而且这些实例都是public static void。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java拾遗（二）">
+<meta property="og:url" content="http://yoursite.com/2015/12/02/Java拾遗（二）/index.html">
+<meta property="og:site_name" content="Simon's blog">
+<meta property="og:description" content="一、Java 枚举类Java枚举类可以限制取值，实现单例设计模式等功能。
+枚举类的构造方法是用private修饰的。枚举类的所有实例必须在类的第一行列出，否则这个枚举类不会产生对象。而且这些实例都是public static void。">
+<meta property="og:updated_time" content="2015-12-02T08:39:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java拾遗（二）">
+<meta name="twitter:description" content="一、Java 枚举类Java枚举类可以限制取值，实现单例设计模式等功能。
+枚举类的构造方法是用private修饰的。枚举类的所有实例必须在类的第一行列出，否则这个枚举类不会产生对象。而且这些实例都是public static void。">
+  
+    <link rel="alternative" href="/atom.xml" title="Simon&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">崔伟健</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">得到的都是侥幸，失去的才是人生。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2878590964/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Data-mining/" style="font-size: 15px;">Data mining</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java设计模式/" style="font-size: 10px;">Java设计模式</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/reprint/" style="font-size: 10px;">reprint</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/工作日志/" style="font-size: 10px;">工作日志</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">JLU在读计算机硕士。主修数据挖掘。一个每周运动八小时的胖子。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">崔伟健</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">崔伟健</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">得到的都是侥幸，失去的才是人生。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2878590964/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Java拾遗（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/02/Java拾遗（二）/" class="article-date">
+  	<time datetime="2015-12-02T08:00:00.000Z" itemprop="datePublished">2015-12-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java拾遗（二）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、Java_枚举类">一、Java 枚举类</h1><p>Java枚举类可以限制取值，实现单例设计模式等功能。</p>
+<p>枚举类的构造方法是用private修饰的。枚举类的所有实例必须在类的第一行列出，否则这个枚举类不会产生对象。<br>而且这些实例都是public static void。</p>
+<a id="more"></a>
+<h2 id="1-一个简单的例子：">1.一个简单的例子：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> CarType&#123;</span><br><span class="line">  <span class="comment">//车型枚举类</span></span><br><span class="line">  First(<span class="string">"小型轿车"</span>),  <span class="comment">//不同枚举元素用逗号分割开来</span></span><br><span class="line">  Second(<span class="string">"中型轿车"</span>),</span><br><span class="line">  Third(<span class="string">"大型车"</span>),</span><br><span class="line">  Fourth(<span class="string">"SUV"</span>),</span><br><span class="line">  Fifth(<span class="string">"MPV"</span>),</span><br><span class="line">  Sixth(<span class="string">"跑车"</span>),</span><br><span class="line">  Seventh(<span class="string">"皮卡"</span>),</span><br><span class="line">  Eighth(<span class="string">"面包车"</span>),</span><br><span class="line">  Ninth(<span class="string">"卡车"</span>),</span><br><span class="line">  Tenth(<span class="string">"客车"</span>),</span><br><span class="line">  Eleventh(<span class="string">"其他"</span>);   <span class="comment">//枚举完毕使用分号</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> String value;</span><br><span class="line">  CarType(String value) &#123;  <span class="comment">//使用构造方法</span></span><br><span class="line">    <span class="keyword">this</span>.value = value;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value;         <span class="comment">//实例方法来获取枚举元素的值</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在调用时：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">text</span><span class="params">()</span></span>&#123;</span><br><span class="line">   CarType rs1 = CarType.First;</span><br><span class="line">   String rs2 = CarType.First.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-枚举类方法">2.枚举类方法</h2><p>每个枚举类都有一个values方法，该方法可以遍历枚举类的所有实例:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tell</span><span class="params">(Season s)</span>  </span><br><span class="line">    </span>&#123;  </span><br><span class="line">        <span class="keyword">switch</span>(s)  </span><br><span class="line">        &#123;  </span><br><span class="line">        <span class="keyword">case</span> Spring:  </span><br><span class="line">            System.out.println(s+<span class="string">"春天"</span>);  </span><br><span class="line">            <span class="keyword">break</span>;  </span><br><span class="line">        <span class="keyword">case</span> Summer:System.out.println(s+<span class="string">"夏天"</span>);  </span><br><span class="line">            <span class="keyword">break</span>;  </span><br><span class="line">        <span class="keyword">case</span> Fall:System.out.println(s+<span class="string">"秋天"</span>);  </span><br><span class="line">            <span class="keyword">break</span>;  </span><br><span class="line">        <span class="keyword">case</span> Winter:System.out.println(s+<span class="string">"冬天"</span>);  </span><br><span class="line">            <span class="keyword">break</span>;  </span><br><span class="line">        &#125;       </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;     </span><br><span class="line">        <span class="keyword">for</span>(Season s:Season.values())  &#123;  </span><br><span class="line">            System.out.println(s);  </span><br><span class="line">        &#125;  </span><br><span class="line">        tell(Season.Fall);   </span><br><span class="line">    &#125;   </span><br><span class="line">&#125;   </span><br><span class="line"><span class="keyword">enum</span> Season  </span><br><span class="line">&#123;  </span><br><span class="line">    Spring,Summer,Fall,Winter;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>枚举类的构造方法是 privite 所以不能用new 来创建对象。<br>可以使用Enum.valueOf(Class c,String s); 创建对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;   </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;     </span><br><span class="line">        Season s=Enum.valueOf(Season.class, <span class="string">"Summer"</span>);</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="二、Java_Queue接口">二、Java Queue接口</h1><p>Queue接口与List、Set同一级别，都是继承了Collection接口。</p>
+<p>Queue队列的一些常用方法：</p>
+<p>add        增加一个元索                     如果队列已满，则抛出一个IIIegaISlabEepeplian异常<br>remove   移除并返回队列头部的元素    如果队列为空，则抛出一个NoSuchElementException异常<br>element  返回队列头部的元素             如果队列为空，则抛出一个NoSuchElementException异常<br>offer       添加一个元素并返回true       如果队列已满，则返回false<br>poll         移除并返问队列头部的元素    如果队列为空，则返回null<br>peek       返回队列头部的元素             如果队列为空，则返回null<br>put         添加一个元素                      如果队列满，则阻塞<br>take        移除并返回队列头部的元素     如果队列为空，则阻塞</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/11/27/Java-拾遗（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 拾遗（一）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Java拾遗（二）" data-title="Java拾遗（二）" data-url="http://yoursite.com/2015/12/02/Java拾遗（二）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 崔伟健
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
