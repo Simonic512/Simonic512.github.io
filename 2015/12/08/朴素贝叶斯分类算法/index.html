@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: Java | Simon&#39;s blog</title>
+  <title>贝叶斯分类算法 | Simon&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Simon's blog">
-<meta property="og:url" content="http://yoursite.com/tags/Java/index.html">
+  <meta name="description" content="贝叶斯分类算法是指基于贝叶斯定理的分类算法，本篇文章介绍最简单的两个：朴素贝叶斯分类算法和树增强型朴素贝叶斯算法（TAN算法）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贝叶斯分类算法">
+<meta property="og:url" content="http://yoursite.com/2015/12/08/朴素贝叶斯分类算法/index.html">
 <meta property="og:site_name" content="Simon's blog">
-<meta property="og:description">
+<meta property="og:description" content="贝叶斯分类算法是指基于贝叶斯定理的分类算法，本篇文章介绍最简单的两个：朴素贝叶斯分类算法和树增强型朴素贝叶斯算法（TAN算法）。">
+<meta property="og:updated_time" content="2015-12-08T09:16:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Simon's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="贝叶斯分类算法">
+<meta name="twitter:description" content="贝叶斯分类算法是指基于贝叶斯定理的分类算法，本篇文章介绍最简单的两个：朴素贝叶斯分类算法和树增强型朴素贝叶斯算法（TAN算法）。">
   
     <link rel="alternative" href="/atom.xml" title="Simon&#39;s blog" type="application/atom+xml">
   
@@ -173,181 +174,116 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-朴素贝叶斯分类算法" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2015/12/08/朴素贝叶斯分类算法/" class="article-date">
+  	<time datetime="2015-12-08T08:28:37.000Z" itemprop="datePublished">2015-12-08</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      贝叶斯分类算法
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-mining/">Data mining</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/02/Java拾遗（二）/" class="archive-article-date">
-  	<time datetime="2015-12-02T08:00:00.000Z" itemprop="datePublished">12月 2</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/02/Java拾遗（二）/">Java 拾遗（二）</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>贝叶斯分类算法是指基于贝叶斯定理的分类算法，本篇文章介绍最简单的两个：朴素贝叶斯分类算法和树增强型朴素贝叶斯算法（TAN算法）。</p>
+<a id="more"></a>
+<h1 id="一、贝叶斯定理">一、贝叶斯定理</h1><p>P(A|B) 表示在事件B发生的前提下，事件A发生的概率，也称为事件B发生下事件A的条件概率。其基本的求解公式为：</p>
+<p>$$P(A|B) = P(AB)/P(B)$$</p>
+<p>贝叶斯定理用于已知P(A|B)的前提下求解P(B|A),公式为：</p>
+<p>$$P(B|A) = P(A|B)P(B)/P(A)$$</p>
+<h1 id="二、朴素贝叶斯分类">二、朴素贝叶斯分类</h1><p>基于贝叶斯定理，朴素贝叶斯分类的基本思想为：对于给出的待分类项，求解在此项出现的条件下各个类别出现的概率，认定此分类项属于出现概率最大的那个类别。就好比你在街上看到一个黑人，让你猜他是哪里来的，你一定会猜非洲：因为黑人中非洲人比例最高–<strong>在无其他信息可用的前提下，选择条件概率最大的类别</strong>。</p>
+<h2 id="朴素贝叶斯分类的正式定义如下：">朴素贝叶斯分类的正式定义如下：</h2><ol>
+<li>设 x = {a_1,a_2,…a_m} 为待分类项，而每个a为x的一个特征属性。</li>
+<li>有类别集合 C ＝ ｛y_1,y_2,…y_n}。</li>
+<li>计算 P(y_1|x),P(y_2|x),…P(y_n|x)。</li>
+<li>如果 P(y_k|x) = max{P(y_1|x),P(y_2|x),…P(y_n|x)},则x∈y_k。</li>
+</ol>
+<h1 id="三、TAN算法">三、TAN算法</h1><p>朴素贝叶斯分类算法本身非常简单高效，可以应用在大型数据库中，但其基于的贝叶斯定理的前提条件是假设一个属性值对给定类的影响独立于其他属性的值，而这种情况在实际应用中通常是不成立的，简单的朴素贝叶斯算法在这种情况下分类准确率会下降，因此衍生出了降低独立性假设的TAN算法。</p>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/11/27/Java-拾遗（一）/" class="archive-article-date">
-  	<time datetime="2015-11-27T02:59:15.000Z" itemprop="datePublished">11月 27</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/11/27/Java-拾遗（一）/">Java 拾遗（一）</a>
-    </h1>
   
+    <a href="/2015/12/02/Java拾遗（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 拾遗（二）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/11/19/数据预处理/" class="archive-article-date">
-  	<time datetime="2015-11-19T02:22:41.000Z" itemprop="datePublished">11月 19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/11/19/数据预处理/">工作日志-数据预处理</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/">JDBC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XML/">XML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工作日志/">工作日志</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="朴素贝叶斯分类算法" data-title="贝叶斯分类算法" data-url="http://yoursite.com/2015/12/08/朴素贝叶斯分类算法/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/11/13/Intellij-IDEA-14-环境下开发-servlet-入门/" class="archive-article-date">
-  	<time datetime="2015-11-13T05:35:21.000Z" itemprop="datePublished">11月 13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/11/13/Intellij-IDEA-14-环境下开发-servlet-入门/">Intellij IDEA 14 环境下开发 servlet 入门</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/servlet/">servlet</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/10/27/Java集合/" class="archive-article-date">
-  	<time datetime="2015-10-27T13:08:16.000Z" itemprop="datePublished">10月 27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/10/27/Java集合/">Java-集合</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/tags/Java/page/2/">2</a><a class="extend next" rel="next" href="/tags/Java/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 </div>
       <footer id="footer">
@@ -373,9 +309,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}
