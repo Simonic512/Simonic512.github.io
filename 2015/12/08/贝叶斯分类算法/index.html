@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/12/08/贝叶斯分类算法/index.html">
 <meta property="og:site_name" content="Simon's blog">
 <meta property="og:description" content="贝叶斯分类算法是指基于贝叶斯定理的分类算法，本篇文章介绍最简单的两个：朴素贝叶斯分类算法和树增强型朴素贝叶斯算法（TAN算法）。">
-<meta property="og:updated_time" content="2015-12-08T11:39:26.000Z">
+<meta property="og:updated_time" content="2015-12-08T11:46:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贝叶斯分类算法">
 <meta name="twitter:description" content="贝叶斯分类算法是指基于贝叶斯定理的分类算法，本篇文章介绍最简单的两个：朴素贝叶斯分类算法和树增强型朴素贝叶斯算法（TAN算法）。">
@@ -220,9 +220,9 @@
 <h1 id="二、朴素贝叶斯分类">二、朴素贝叶斯分类</h1><p>基于贝叶斯定理，朴素贝叶斯分类的基本思想为：对于给出的待分类项，求解在此项出现的条件下各个类别出现的概率，认定此分类项属于出现概率最大的那个类别。就好比你在街上看到一个黑人，让你猜他是哪里来的，你一定会猜非洲：因为黑人中非洲人比例最高–<strong>在无其他信息可用的前提下，选择条件概率最大的类别</strong>。</p>
 <h2 id="朴素贝叶斯分类的正式定义如下：">朴素贝叶斯分类的正式定义如下：</h2><ol>
 <li>设 $$x = {a_1,a_2,…a_m}$$ 为待分类项，而每个a为x的一个特征属性。</li>
-<li>有类别集合 $$C ＝｛y_1,y_2,…y_n}$$</li>
+<li>有类别集合 $$C ＝\{y_1,y_2,...y_n\}$$</li>
 <li>计算 $$P(y_1|x),P(y_2|x),…P(y_n|x)$$</li>
-<li>如果 $$P(y_k|x) = max{P(y_1|x),P(y_2|x),…P(y_n|x)}$$,则$$x∈y_k$$</li>
+<li>如果 $$P(y_k|x) = max{\{P(y_1|x),P(y_2|x),...P(y_n|x)\}}$$,则$$x∈y_k$$ </li>
 </ol>
 <h2 id="可以看出关键步骤就是3中的条件概率：">可以看出关键步骤就是3中的条件概率：</h2><ol>
 <li>找到一个已知分类的待分类项集合（训练样本集）。</li>
