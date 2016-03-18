@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/12/18/Java-序列化/index.html">
 <meta property="og:site_name" content="Simon's blog">
 <meta property="og:description" content="Java 序列化是把Java对象转换为字节序列的过程，相反，反序列化是指把字节序列恢复为Java对象的过程。Java序列化有助于将Java对象文件化，在JVM退出之后也能持久保存，而且序列化的二进制文件也有助于两个Java进程进行通讯。">
-<meta property="og:updated_time" content="2015-12-18T15:57:56.000Z">
+<meta property="og:updated_time" content="2015-12-21T11:37:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 序列化">
 <meta name="twitter:description" content="Java 序列化是把Java对象转换为字节序列的过程，相反，反序列化是指把字节序列恢复为Java对象的过程。Java序列化有助于将Java对象文件化，在JVM退出之后也能持久保存，而且序列化的二进制文件也有助于两个Java进程进行通讯。">
@@ -110,7 +110,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Data-mining/" style="font-size: 15px;">Data mining</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java设计模式/" style="font-size: 10px;">Java设计模式</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/reprint/" style="font-size: 10px;">reprint</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/工作日志/" style="font-size: 10px;">工作日志</a>
+						<a href="/tags/Data-mining/" style="font-size: 16.67px;">Data mining</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java设计模式/" style="font-size: 13.33px;">Java设计模式</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/reprint/" style="font-size: 10px;">reprint</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/工作日志/" style="font-size: 10px;">工作日志</a>
 					</div>
 				</section>
 				
@@ -227,6 +227,10 @@
 <h1 id="三、Externalizable接口实现对象序列化">三、Externalizable接口实现对象序列化</h1><p>Serializable 接口序列化实现起来比较简单，但实际上对象的序列化可以通过实现两种接口来实现，若实现的是Serializable接口，则所有的序列化将会自动进行，但如果实现Externalizable接口，则没有任何东西可以自动序列化，需要在writeExternal方法中进行手工指定所要序列化的变量，这与是否被transient修饰无关。下面用一段简单的代码对Externalizable 接口进行说明。</p>
 <p>在实现了Externalizable接口后，writeObject函数将通过writeExternal去赋值对象。readObject函数将通过readExterna函数去为对象赋值。</p>
 <p>这段程序会输出 content 字符串<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * <span class="doctag">@descripiton</span> Externalizable接口的使用</span><br><span class="line"> * <span class="doctag">@simon</span></span><br><span class="line"> *</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExternalizableTest</span> <span class="keyword">implements</span> <span class="title">Externalizable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> String content = <span class="string">"是的，我将会被序列化，不管我是否被transient关键字修饰"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeExternal</span><span class="params">(ObjectOutput out)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        out.writeObject(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readExternal</span><span class="params">(ObjectInput in)</span> <span class="keyword">throws</span> IOException,</span><br><span class="line">            ClassNotFoundException </span>&#123;</span><br><span class="line">        content = (String) in.readObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        </span><br><span class="line">        ExternalizableTest et = <span class="keyword">new</span> ExternalizableTest();</span><br><span class="line">        ObjectOutput out = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(</span><br><span class="line">                <span class="keyword">new</span> File(<span class="string">"test"</span>)));</span><br><span class="line">        out.writeObject(et);</span><br><span class="line"></span><br><span class="line">        ObjectInput in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(</span><br><span class="line">                <span class="string">"test"</span>)));</span><br><span class="line">        et = (ExternalizableTest) in.readObject();</span><br><span class="line">        System.out.println(et.content);</span><br><span class="line"></span><br><span class="line">        out.close();</span><br><span class="line">        in.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="四、serialVersionUID_的使用">四、serialVersionUID 的使用</h1><p>Java 序列化时会根据类的serialVersimonUID来验证版本的一致性，同样的，反序列化时JVM会把传来的字节流中的serialVersionUID与本地相应类的serialVersionUID进行比较，如果相同就认为是一致的。</p>
+<p>serialVersionUID 有两种设置方式，简单的就是默认的1L：<br>private static final long serialVersionUID = 1L;</p>
+<p>还可以根据类名、接口名、成员方法及属性等来生成一个64位的哈希字段，可以在IDE中自动计算。如果没有显式的声明serialVersionUID,那么序列化机制会根据类名以及类中相应元素自动生成一个serialVersionUID作为序列化的版本号使用，理论上类名、方法等不发生任何变化时无论重新编译几次，serialVersionUID也不会发生任何变化。</p>
+<p>通常情况下，如果我们不希望编译后强制划分类的版本，即实现序列化接口的实体能够兼容之前的版本，那么我们一定要指定serialVersionUID为一个long类型的变量，只要这个值不变就可以实现相同的序列化与反序列化。</p>
 
       
     </div>
@@ -235,6 +239,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/01/25/观察者模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          观察者模式
+        
+      </div>
+    </a>
   
   
     <a href="/2015/12/08/贝叶斯分类算法/" id="article-nav-older" class="article-nav-link-wrap">
@@ -292,7 +305,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2015 崔伟健
+    		&copy; 2016 崔伟健
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
