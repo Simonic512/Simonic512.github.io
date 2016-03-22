@@ -3,18 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>观察者模式 | Simon&#39;s blog</title>
+  <title>python @property | Simon&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
+  <meta name="description" content="python 中的 @property 是一个内置装饰器，用来将方法的调用直接转换为类似属性访问的形式
+e.g:
+12345678910111213class Student(object):    @property    def score(self):        return self._score    @score.setter    def score(self, value):">
 <meta property="og:type" content="article">
-<meta property="og:title" content="观察者模式">
-<meta property="og:url" content="http://yoursite.com/2016/01/25/观察者模式/index.html">
+<meta property="og:title" content="python @property">
+<meta property="og:url" content="http://yoursite.com/2016/03/22/python-property/index.html">
 <meta property="og:site_name" content="Simon's blog">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-01-25T01:18:17.000Z">
+<meta property="og:description" content="python 中的 @property 是一个内置装饰器，用来将方法的调用直接转换为类似属性访问的形式
+e.g:
+12345678910111213class Student(object):    @property    def score(self):        return self._score    @score.setter    def score(self, value):">
+<meta property="og:updated_time" content="2016-03-22T11:55:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="观察者模式">
-<meta name="twitter:description">
+<meta name="twitter:title" content="python @property">
+<meta name="twitter:description" content="python 中的 @property 是一个内置装饰器，用来将方法的调用直接转换为类似属性访问的形式
+e.g:
+12345678910111213class Student(object):    @property    def score(self):        return self._score    @score.setter    def score(self, value):">
   
     <link rel="alternative" href="/atom.xml" title="Simon&#39;s blog" type="application/atom+xml">
   
@@ -174,11 +180,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-观察者模式" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-python-property" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/25/观察者模式/" class="article-date">
-  	<time datetime="2016-01-25T01:10:01.000Z" itemprop="datePublished">2016-01-25</time>
+      <a href="/2016/03/22/python-property/" class="article-date">
+  	<time datetime="2016-03-22T11:42:46.000Z" itemprop="datePublished">2016-03-22</time>
 </a>
     </div>
   
@@ -191,7 +197,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      观察者模式
+      python @property
     </h1>
   
 
@@ -200,7 +206,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java设计模式/">Java设计模式</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
 	</div>
 
         
@@ -211,7 +217,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p><strong>python 中的 @property 是一个内置装饰器，用来将方法的调用直接转换为类似属性访问的形式</strong></p>
+<p>e.g:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="decorator">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._score</span><br><span class="line"></span><br><span class="line"><span class="decorator">    @score.setter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value, int):</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer!'</span>)</span><br><span class="line">        <span class="keyword">if</span> value &lt; <span class="number">0</span> <span class="keyword">or</span> value &gt; <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0 ~ 100!'</span>)</span><br><span class="line">        self._score = value</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>需要注意的是使用方法： get函数（第一个 score ）上使用 @property 关键字，此时@property 本身又创建了另一个装饰器 @score.setter,负责把setter方法变成属性赋值，因此只要在 set 函数上使用 @score.setter 关键字就可以了。一般可以在 set 函数中对属性参数做一些必要的检查。如果只有 set 函数（@property 的部分），那么函数对应的就是只读属性。</p>
+<p>调用时：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span>s = Student()</span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>s.score = <span class="number">60</span> <span class="comment"># OK，实际转化为s.set_score(60)</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>s.score <span class="comment"># OK，实际转化为s.get_score()</span></span><br><span class="line"><span class="number">60</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>s.score = <span class="number">9999</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">ValueError: score must between <span class="number">0</span> ~ <span class="number">100</span>!</span><br></pre></td></tr></table></figure>
+<p>又一个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Screen</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="decorator">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">width</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._width</span><br><span class="line"><span class="decorator">    @width.setter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">width</span><span class="params">(self,width)</span>:</span></span><br><span class="line">        self._width = width</span><br><span class="line"><span class="decorator">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">height</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._height</span><br><span class="line"><span class="decorator">    @height.setter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">height</span><span class="params">(self,height)</span>:</span></span><br><span class="line">        self._height = height</span><br><span class="line"><span class="decorator">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">resolution</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._width*self.height</span><br></pre></td></tr></table></figure>
+<p> 这段代码中 width,height 为读写属性，resolution 为只读属性，可以通过前两个属性计算出来。</p>
+
       
     </div>
     
@@ -220,18 +236,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/03/18/Python 中的 generator /" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Python 中的 generator
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/12/18/Java-序列化/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java 序列化</div>
+    <a href="/2016/03/18/Python 中的 generator /" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python 中的 generator</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -260,7 +267,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="观察者模式" data-title="观察者模式" data-url="http://yoursite.com/2016/01/25/观察者模式/"></div>
+	<div class="ds-thread" data-thread-key="python-property" data-title="python @property" data-url="http://yoursite.com/2016/03/22/python-property/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
