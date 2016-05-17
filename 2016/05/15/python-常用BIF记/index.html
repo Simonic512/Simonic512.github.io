@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/05/15/python-常用BIF记/index.html">
 <meta property="og:site_name" content="Simon's blog">
 <meta property="og:description" content="python 常用 BIF 记">
-<meta property="og:updated_time" content="2016-05-15T12:09:30.000Z">
+<meta property="og:updated_time" content="2016-05-15T12:10:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 常用BIF记">
 <meta name="twitter:description" content="python 常用 BIF 记">
@@ -40,7 +40,7 @@
 		</hgroup>
 
 		
-		<p class="header-subtitle">情深不寿，强极则辱，谦谦君子，温润如玉。</p>
+		<p class="header-subtitle">Be patient.</p>
 		
 
 		
@@ -144,7 +144,7 @@
 			  <h1 class="header-author">崔伟健</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">情深不寿，强极则辱，谦谦君子，温润如玉。</p>
+			<p class="header-subtitle">Be patient.</p>
 			
 			<nav class="header-menu">
 				<ul>
@@ -215,9 +215,7 @@
 <h2 id="1-import_time">1.import time</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">time.time()  <span class="comment"># 返回时间戳 float</span></span><br><span class="line">time.ctime(sec) <span class="comment"># 将当前(或sec时间戳)的时间 返回为字符串 'Thu Mar 24 18:53:35 2016'</span></span><br><span class="line">time.strftime()  <span class="comment"># 格式化输出</span></span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, time.localtime()) </span><br><span class="line"><span class="string">'2016-03-24 18:58:00'</span></span><br><span class="line">&gt;&gt;&gt;time.strftime(<span class="string">"%a %b %d %H:%M:%S %Y"</span>, time.localtime()) </span><br><span class="line"><span class="string">'Thu Mar 24 19:00:00 2016'</span></span><br><span class="line"></span><br><span class="line">time.mktime()   <span class="comment"># 格式化输入，转化成时间戳</span></span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;a = <span class="string">"Sat Mar 28 22:24:24 2009"</span></span><br><span class="line">&gt;&gt;&gt;b = time.mktime(time.strptime(a,<span class="string">"%a %b %d %H:%M:%S %Y"</span>))</span><br><span class="line"></span><br><span class="line">time.sleep(sec)  <span class="comment"># 线程推迟 sec 秒运行 </span></span><br><span class="line">time.clock()  <span class="comment"># 第一次调用返回程序运行时间，以后每次调用都返回与第一次调用的时间间隔</span></span><br></pre></td></tr></table></figure>
 <h2 id="2-_import_random">2. import random</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">random.random()  <span class="comment"># 生成一个0到1的随机浮点数</span></span><br><span class="line">random.uniform(a,b) <span class="comment"># 生成 a-b范围内的随机浮点数，a,b 都包括</span></span><br><span class="line">random.randint(a,b) <span class="comment"># 生成 a-b范围内的随机整数</span></span><br><span class="line">random.randrange(a,b,c) <span class="comment"># a-b范围内步长为c的序列内随机取一个数</span></span><br><span class="line">random.choice(sequence) <span class="comment"># **在 sequence (有序类型,list,tuple,str 等), 随机选取一个元素**</span></span><br><span class="line">random.shuffle(list)  <span class="comment"># 将列表中的元素打乱</span></span><br><span class="line">random.sample(sequence,k) 从 sequence 中随机获取k长度的片段，不会改变sequence序列</span><br></pre></td></tr></table></figure>
 <h2 id="3-_import_os">3. import os</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">os.getcwd()  <span class="comment"># 当前工作目录</span></span><br><span class="line">os.listdir(dir) <span class="comment"># 当前 dir 下的所有文件和目录</span></span><br><span class="line">os.remove() / os.rmdir()  <span class="comment"># 删除文件/目录</span></span><br><span class="line">os.mkdir()  <span class="comment"># 创建目录</span></span><br><span class="line">os.path.isfile() / os.path.isdir()   <span class="comment"># 是否文件/目录，主要是字符串匹配，需要传入完整路径（绝对或相对）</span></span><br><span class="line">os.path.exists() <span class="comment"># 制定对象是否存在</span></span><br><span class="line">os.path.split()  <span class="comment"># 返回路径的目录和文件名（按最后一个 / 分开)</span></span><br><span class="line">os.path.getsize() <span class="comment"># 获得文件大小</span></span><br><span class="line">os.path.abspath() <span class="comment"># 获得绝对路径</span></span><br><span class="line">os.path.john()  <span class="comment"># 连接目录和文件名</span></span><br><span class="line">os.system(<span class="string">'order'</span>)  <span class="comment"># 执行 shell 命令 order </span></span><br><span class="line"></span><br><span class="line">os.chdir()  <span class="comment"># 改变当前工作目录</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-_csv">4. csv</h2><p>````python<br>import csv</p>
-<h1 id="读文件和读取其他文件差不多，逐行分割以逗号读取即可">读文件和读取其他文件差不多，逐行分割以逗号读取即可</h1><h1 id="写文件：">写文件：</h1><p>csvfile = open(‘csvfilename.csv’,’w’)<br>writer = csv.writer(csvfile)<br>writer.writerow([‘’,’’,’’])    # 写一行<br>writer.writerows(data)         # 写多行<br>csvfile.close()                # 调用close方法关闭<br>````python</p>
-
+<h2 id="4-_csv">4. csv</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="comment"># 读文件和读取其他文件差不多，逐行分割以逗号读取即可</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 写文件：</span></span><br><span class="line">csvfile = open(<span class="string">'csvfilename.csv'</span>,<span class="string">'w'</span>)</span><br><span class="line">writer = csv.writer(csvfile)</span><br><span class="line">writer.writerow([<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>])    <span class="comment"># 写一行</span></span><br><span class="line">writer.writerows(data)         <span class="comment"># 写多行</span></span><br><span class="line">csvfile.close()                <span class="comment"># 调用close方法关闭</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
