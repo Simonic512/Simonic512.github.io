@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Word2Vec 4 Python | Simon&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Word2Vec 为Tomas Mikolov 在 Google 带领的研究团队创造。主要是用神经网络训练词库模型。Word2Vec 通过对语料的神经网络训练，将词转化为n维向量，最重要的是与简单的的 Bag Of Words 模型不同，Word2Vec 模型形成的向量每一维度值的大小具有特定意义，可以表示词与词之间的关系。
+本文主要简单讲解 Word2Vec 模型在 Python 中的具体使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Word2Vec 4 Python">
+<meta property="og:url" content="http://yoursite.com/2016/08/31/Word2Vec-4-Python/index.html">
+<meta property="og:site_name" content="Simon's blog">
+<meta property="og:description" content="Word2Vec 为Tomas Mikolov 在 Google 带领的研究团队创造。主要是用神经网络训练词库模型。Word2Vec 通过对语料的神经网络训练，将词转化为n维向量，最重要的是与简单的的 Bag Of Words 模型不同，Word2Vec 模型形成的向量每一维度值的大小具有特定意义，可以表示词与词之间的关系。
+本文主要简单讲解 Word2Vec 模型在 Python 中的具体使用。">
+<meta property="og:updated_time" content="2016-08-31T09:44:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Word2Vec 4 Python">
+<meta name="twitter:description" content="Word2Vec 为Tomas Mikolov 在 Google 带领的研究团队创造。主要是用神经网络训练词库模型。Word2Vec 通过对语料的神经网络训练，将词转化为n维向量，最重要的是与简单的的 Bag Of Words 模型不同，Word2Vec 模型形成的向量每一维度值的大小具有特定意义，可以表示词与词之间的关系。
+本文主要简单讲解 Word2Vec 模型在 Python 中的具体使用。">
+  
+    <link rel="alternative" href="/atom.xml" title="Simon&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">崔伟健</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">quietly brilliant.</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Data-mining/" style="font-size: 15px;">Data mining</a> <a href="/tags/Datamining/" style="font-size: 10px;">Datamining</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/HMM/" style="font-size: 10px;">HMM</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java设计模式/" style="font-size: 12.5px;">Java设计模式</a> <a href="/tags/NLP/" style="font-size: 12.5px;">NLP</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/PythonCookBook/" style="font-size: 10px;">PythonCookBook</a> <a href="/tags/Word2Vec/" style="font-size: 10px;">Word2Vec</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/reprint/" style="font-size: 10px;">reprint</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/工作日志/" style="font-size: 10px;">工作日志</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">JLU在读计算机硕士。主修数据挖掘。一个每周运动八小时的胖子。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">崔伟健</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">崔伟健</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">quietly brilliant.</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Word2Vec-4-Python" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/31/Word2Vec-4-Python/" class="article-date">
+  	<time datetime="2016-08-31T06:51:02.000Z" itemprop="datePublished">2016-08-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Word2Vec 4 Python
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Word2Vec/">Word2Vec</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Word2Vec 为Tomas Mikolov 在 Google 带领的研究团队创造。主要是用神经网络训练词库模型。Word2Vec 通过对语料的神经网络训练，将词转化为n维向量，最重要的是与简单的的 Bag Of Words 模型不同，Word2Vec 模型形成的向量每一维度值的大小具有特定意义，可以表示词与词之间的关系。</p>
+<p>本文主要简单讲解 Word2Vec 模型在 Python 中的具体使用。<br><a id="more"></a></p>
+<h2 id="1、准备输入">1、准备输入</h2><p>word2vec 功能在 gensim 包中，因此需要先安装 gensim 模块，word2vec 功能在 gensim.models.Word2Vec 中。</p>
+<p>训练 word2vec 模型需要输入的是句子的序列. 每个句子是一个单词列表,同时需要过滤掉停用词。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_stop_words</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># load stop words from file</span></span><br><span class="line">    stop_word_set = set()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'stop_words'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> f.readlines():</span><br><span class="line">            stop_word_set.add(word.strip())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> stop_word_set</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sen2words</span><span class="params">(sentence,stop_word_set)</span>:</span></span><br><span class="line">    <span class="comment"># split words from sentence with jieba</span></span><br><span class="line">    <span class="comment"># split the stop words</span></span><br><span class="line">    words_list = []</span><br><span class="line"></span><br><span class="line">    seg_words = jieba.lcut(sentence,cut_all=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> seg_words:</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> stop_word_set:</span><br><span class="line">            words_list.append(word)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> words_list</span><br></pre></td></tr></table></figure>
+<p>使用了 [jieba] (<a href="https://github.com/fxsjy/jieba" target="_blank" rel="external">https://github.com/fxsjy/jieba</a> “github 主页”) 中文分词组件进行分词，然后用 set 进行停用词过滤，返回每个 sentence 的单词列表。</p>
+<h2 id="2-_训练">2. 训练</h2><p>以正在处理的 novel 数据集为例训练 model，训练时不必一次性将所有数据都加载进内存中，这时候就可以使用生成器 generator</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySentences</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># iter load the data</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,files_dir,stop_word_set)</span>:</span></span><br><span class="line">        self.files_dir = files_dir</span><br><span class="line">        self.stop_word_set = stop_word_set</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></span><br><span class="line"></span><br><span class="line">        files =[f <span class="keyword">for</span> f <span class="keyword">in</span> os.listdir(self.files_dir) <span class="keyword">if</span> <span class="keyword">not</span> f.endswith(<span class="string">'_sub'</span>)]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">with</span> open(self.files_dir+<span class="string">'/'</span>+file) <span class="keyword">as</span> f:</span><br><span class="line">                <span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():</span><br><span class="line">                    <span class="keyword">yield</span> sen2words(line,self.stop_word_set)</span><br></pre></td></tr></table></figure>
+<p>定义一个 MySentences 类，自定义迭代过程。同时如果需要对单词进行其他的处理，比如大小写转换，编码格式处理，删除数字，抽取命名实体等，都可以在 MySentences 类中完成。</p>
+<p>数据输入处理完了，就可以进行训练了，gensim.models.Word2Vec 函数接受多个参数:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_save</span><span class="params">(files_dir,modelname)</span>:</span></span><br><span class="line">    stop_word_set = get_stop_words()</span><br><span class="line">    sentences = MySentences(files_dir,stop_word_set)</span><br><span class="line"></span><br><span class="line">    num_features = <span class="number">200</span></span><br><span class="line">    min_word_count = <span class="number">20</span></span><br><span class="line">    num_workers = <span class="number">48</span></span><br><span class="line">    context = <span class="number">20</span></span><br><span class="line">    spoch = <span class="number">20</span></span><br><span class="line">    sample = <span class="number">1e-5</span></span><br><span class="line">    model = gensim.models.Word2Vec(</span><br><span class="line">        sentences,</span><br><span class="line">        size = num_features,        <span class="comment"># 神经网络隐藏单元数 default = 100</span></span><br><span class="line">        min_count = min_word_count, <span class="comment"># 字典过滤，小于min_count被丢弃 default = 5</span></span><br><span class="line">        workers = num_workers,      <span class="comment"># 并行的 cpu? 需要 Cython 支持</span></span><br><span class="line">        sample = sample,</span><br><span class="line">        window = context,</span><br><span class="line">        iter = epoch,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    model.save(modelname)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+<p>同时训练时会遍历两遍训练数据集：第一遍收集单词及词频来建立一个内部字典树，第二遍训练神经网络。<br>如果只能遍历一遍数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span>model = gensim.models.Word2Vec() <span class="comment"># an empty model, no training</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>model.build_vocab(some_sentences)  <span class="comment"># can be a non-repeatable, 1-pass generator</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>model.train(other_sentences)  <span class="comment"># can be a non-repeatable, 1-pass generator</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-_储存和加载模型">3. 储存和加载模型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span>model.save(<span class="string">'mymodel'</span>)</span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>new_model = gensim.models.Word2Vec.load(<span class="string">'mymodel'</span>)</span><br><span class="line"><span class="comment"># 加载 C 生成的模型</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>model = Word2Vec.load_word2vec_format(<span class="string">'vectors.txt'</span>, binary=<span class="keyword">False</span>)</span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="comment"># using gzipped/bz2 input works too, no need to unzip:</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>model = Word2Vec.load_word2vec_format(<span class="string">'vectors.bin.gz'</span>, binary=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>可以对已经有的模型进行在线训练：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span>model = gensim.models.Word2Vec.load(<span class="string">'mymodel'</span>)</span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>model.train(more_sentences)</span><br></pre></td></tr></table></figure>
+<h2 id="4-_使用模型">4. 使用模型</h2><p>单词相似度辨别：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span>model[<span class="string">'computer'</span>]  <span class="comment"># 像 dict 一样直接得到单词向量</span></span><br><span class="line">array([-<span class="number">0.00449447</span>, -<span class="number">0.00310097</span>,  <span class="number">0.02421786</span>, ...], dtype=float32)</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>model.most_similar(positive=[<span class="string">'woman'</span>, <span class="string">'king'</span>], negative=[<span class="string">'man'</span>], topn=<span class="number">1</span>)</span><br><span class="line">[(<span class="string">'queen'</span>, <span class="number">0.50882536</span>)]</span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>ll = model.most_similar(<span class="string">'lady'</span>) <span class="comment"># 得到最相似词列表 </span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>model.doesnt_match(<span class="string">"breakfast cereal dinner lunch"</span>.split())</span><br><span class="line"><span class="string">'cereal'</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>model.similarity(<span class="string">'woman'</span>, <span class="string">'man'</span>)   <span class="comment"># 得到两个单词的相似度</span></span><br><span class="line"><span class="number">.73723527</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/08/11/隐马尔可夫模型/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">隐马尔可夫模型</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 崔伟健
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+        <p class="copyright">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本页总阅读量 <span id="busuanzi_value_page_pv"></span> 次</p>
+    </div>
+  </div>
+</footer>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
