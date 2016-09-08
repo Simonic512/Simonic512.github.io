@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>pyspider 爬虫使用与解析 | Simon&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="pyspider 是一个实时爬虫框架，提供了强大的调度控制，支持分布式部署，Docker 部署，提供可替换组建，可以使用任何html解析包(内置 pyquery)。
+同时 pyspider 还提供了一套WEB客户端工具，在WEBUI中可以编写，调试脚本，监控实时状态，download抓取结果，dashboard 中对 task 进行管理。(localhost:5000)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pyspider 爬虫使用与解析">
+<meta property="og:url" content="http://yoursite.com/2016/09/08/pyspider-爬虫使用与解析/index.html">
+<meta property="og:site_name" content="Simon's blog">
+<meta property="og:description" content="pyspider 是一个实时爬虫框架，提供了强大的调度控制，支持分布式部署，Docker 部署，提供可替换组建，可以使用任何html解析包(内置 pyquery)。
+同时 pyspider 还提供了一套WEB客户端工具，在WEBUI中可以编写，调试脚本，监控实时状态，download抓取结果，dashboard 中对 task 进行管理。(localhost:5000)">
+<meta property="og:updated_time" content="2016-09-08T09:58:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pyspider 爬虫使用与解析">
+<meta name="twitter:description" content="pyspider 是一个实时爬虫框架，提供了强大的调度控制，支持分布式部署，Docker 部署，提供可替换组建，可以使用任何html解析包(内置 pyquery)。
+同时 pyspider 还提供了一套WEB客户端工具，在WEBUI中可以编写，调试脚本，监控实时状态，download抓取结果，dashboard 中对 task 进行管理。(localhost:5000)">
+  
+    <link rel="alternative" href="/atom.xml" title="Simon&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">崔伟健</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">quietly brilliant.</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Data-mining/" style="font-size: 15px;">Data mining</a> <a href="/tags/Datamining/" style="font-size: 10px;">Datamining</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/HMM/" style="font-size: 10px;">HMM</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java设计模式/" style="font-size: 12.5px;">Java设计模式</a> <a href="/tags/NLP/" style="font-size: 12.5px;">NLP</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/PythonCookBook/" style="font-size: 10px;">PythonCookBook</a> <a href="/tags/Word2Vec/" style="font-size: 10px;">Word2Vec</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/reprint/" style="font-size: 10px;">reprint</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/工作日志/" style="font-size: 10px;">工作日志</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络爬虫/" style="font-size: 10px;">网络爬虫</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">JLU在读计算机硕士。主修数据挖掘。一个每周运动八小时的胖子。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">崔伟健</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">崔伟健</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">quietly brilliant.</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-pyspider-爬虫使用与解析" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/08/pyspider-爬虫使用与解析/" class="article-date">
+  	<time datetime="2016-09-08T09:04:43.000Z" itemprop="datePublished">2016-09-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      pyspider 爬虫使用与解析
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络爬虫/">网络爬虫</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>pyspider 是一个实时爬虫框架，提供了强大的调度控制，支持分布式部署，Docker 部署，提供可替换组建，可以使用任何html解析包(内置 pyquery)。</p>
+<p>同时 pyspider 还提供了一套WEB客户端工具，在WEBUI中可以编写，调试脚本，监控实时状态，download抓取结果，dashboard 中对 task 进行管理。(localhost:5000)</p>
+<a id="more"></a>
+<p>项目的 github 主页：<a href="https://github.com/binux/pyspider" target="_blank" rel="external">https://github.com/binux/pyspider</a><br>英文文档：<a href="http://docs.pyspider.org/en/latest/" target="_blank" rel="external">http://docs.pyspider.org/en/latest/</a><br>架构设计：<a href="http://blog.binux.me/2014/02/pyspider-architecture/" target="_blank" rel="external">http://blog.binux.me/2014/02/pyspider-architecture/</a></p>
+<p>作者的三篇中文教程（文档翻译）：<br><a href="http://blog.binux.me/2015/01/pyspider-tutorial-level-1-html-and-css-selector/" target="_blank" rel="external">http://blog.binux.me/2015/01/pyspider-tutorial-level-1-html-and-css-selector/</a><br><a href="http://blog.binux.me/2015/01/pyspider-tutorial-level-2-ajax-and-more-http/" target="_blank" rel="external">http://blog.binux.me/2015/01/pyspider-tutorial-level-2-ajax-and-more-http/</a><br><a href="http://blog.binux.me/2015/01/pyspider-tutorial-level-3-render-with-phantomjs/" target="_blank" rel="external">http://blog.binux.me/2015/01/pyspider-tutorial-level-3-render-with-phantomjs/</a></p>
+<h1 id="一、_爬取搜狗问问为例讲解_pyspider_的简单使用">一、 爬取搜狗问问为例讲解 pyspider 的简单使用</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- encoding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># Created on 2016-09-06 13:52:54</span></span><br><span class="line"><span class="comment"># Project: zhidao</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pyspider.libs.base_handler <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Handler</span><span class="params">(BaseHandler)</span>:</span></span><br><span class="line">    crawl_config = &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># 这个构造函数可以没有，对初始链接进行一些预处理</span></span><br><span class="line">        key_words = [<span class="string">'空调'</span>,<span class="string">'家居装修'</span>,<span class="string">'家居'</span>,<span class="string">'家电'</span>,<span class="string">'电饭煲'</span>,<span class="string">'微波炉'</span>,<span class="string">'烤箱'</span>,<span class="string">'洗衣机'</span>,<span class="string">'空调'</span>,<span class="string">'冰箱'</span>,<span class="string">'电视'</span>]</span><br><span class="line">        url_list = []</span><br><span class="line">        <span class="comment"># 关键词列表 </span></span><br><span class="line">        <span class="keyword">for</span> key_word <span class="keyword">in</span> key_words:</span><br><span class="line">        <span class="comment"># 页码拼接</span></span><br><span class="line">            start_url1 = <span class="string">'http://wenwen.qq.com/s/?w='</span>+key_word+<span class="string">'&amp;pg='</span></span><br><span class="line">            start_url2 = <span class="string">'&amp;ch=sp.pt'</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">                su = start_url1+str(i)+start_url2</span><br><span class="line">                url_list.append(su)</span><br><span class="line">            self.url_list = url_list</span><br><span class="line"><span class="decorator">    @every(minutes=24 * 60)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_start</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="comment"># 爬取的入口</span></span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> self.url_list:</span><br><span class="line">            start_url = url</span><br><span class="line">            <span class="comment"># headers 设置，这里可以设置代理，cookie等</span></span><br><span class="line">            self.crawl(start_url,headers=&#123;</span><br><span class="line">                                          <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'</span>,</span><br><span class="line">                                          &#125;, callback=self.index_page)</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line"><span class="decorator">    @config(age=10 * 24 * 60 * 60)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">index_page</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    <span class="comment"># response.doc('#result_list &gt; div &gt; h3 &gt; a') 这里是 css selector </span></span><br><span class="line">    <span class="comment"># pyspider 的 WEBUI 提供了 css selector helper,可以在单步调试下逐步选取 </span></span><br><span class="line">        <span class="keyword">for</span> each <span class="keyword">in</span> response.doc(<span class="string">'#result_list &gt; div &gt; h3 &gt; a'</span>).items():</span><br><span class="line">            <span class="keyword">if</span> (response.doc(<span class="string">'a &gt; span'</span>).text() == <span class="string">u'略懂社'</span>):</span><br><span class="line">            <span class="comment"># 这里的 if 逻辑主要是因为 sougou 问问的搜索结果中有来自 略懂社的链接</span></span><br><span class="line">            <span class="comment"># 需要进行一次连接跳转 拼接url</span></span><br><span class="line">                qid = str(re.findall(<span class="string">r'/z/q\d+'</span>,each.attr.href))[<span class="number">7</span>:-<span class="number">2</span>]</span><br><span class="line">                url = <span class="string">'http://wenwen.qq.com/qunapp/world/question?qid='</span>+qid+<span class="string">'&amp;viewsrc=1&amp;ch=fromsearch.pc'</span></span><br><span class="line">                <span class="comment"># 略懂社的页面是 AJAX 动态加载的</span></span><br><span class="line">                <span class="comment"># 需要 phantomjs 框架的支持来进行爬取</span></span><br><span class="line">                self.crawl(url, callback=self.detail_page,fetch_type=<span class="string">'js'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.crawl(each.attr.href, callback=self.detail_page2)</span><br><span class="line"><span class="decorator">    @config(priority=2)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detail_page</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="string">"title"</span>: response.doc(<span class="string">'.yy-mt1 &gt; pre'</span>).text(),</span><br><span class="line">            <span class="string">"text"</span>: response.doc(<span class="string">'.answer_text'</span>).text(),</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line"><span class="decorator">    @config(priority=2)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detail_page2</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    <span class="comment"># 返回的内容，在 dashboard 里可以以 csv 或 json格式下载</span></span><br><span class="line">    <span class="comment"># 也可以直接写函数写在本地</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="string">"title"</span>: response.doc(<span class="string">'.question-tit &gt; h3'</span>).text(),</span><br><span class="line">            <span class="string">"text"</span>: response.doc(<span class="string">'.answer-con'</span>).text(),</span><br><span class="line">        &#125;</span><br><span class="line"><span class="string">"""</span><br><span class="line">    def list_page(self, response):</span><br><span class="line">    # 这是一个翻页的回调函数 我没有用</span><br><span class="line">        for each in response.doc('#wgt-list &gt; dl &gt; dt &gt; a').items():</span><br><span class="line">            self.crawl(each.attr.href, callback=self.detail_page)</span><br><span class="line">        # 翻页</span><br><span class="line">        # 这里加入翻页的 selector</span><br><span class="line">        for each in response.doc('#page-main &gt; div &gt; div &gt; div &gt; div.list-inner &gt; div.widget-pager.clearfix.mb-20 &gt; div &gt; a.pager-next').items():</span><br><span class="line">            self.crawl(each.attr.href, callback=self.list_page)</span><br><span class="line">"""</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/08/31/Word2Vec-4-Python/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Word2Vec 4 Python</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 崔伟健
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+        <p class="copyright">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本页总阅读量 <span id="busuanzi_value_page_pv"></span> 次</p>
+    </div>
+  </div>
+</footer>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
