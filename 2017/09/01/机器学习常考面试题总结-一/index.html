@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>机器学习常考面试题总结(一) | Simon&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="机器学习方面常考的面试题总结，随时更新，参考了一些博客和书籍，力求简单易懂。第一部分主要介绍LR和决策树两个简单的模型。第二部分介绍SVM相关，第三部分介绍boosting、隐马模型，第四部分介绍特征选择与计算学习理论，第五部分介绍无监督学习与强化学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习常考面试题总结(一)">
+<meta property="og:url" content="http://yoursite.com/2017/09/01/机器学习常考面试题总结-一/index.html">
+<meta property="og:site_name" content="Simon's blog">
+<meta property="og:description" content="机器学习方面常考的面试题总结，随时更新，参考了一些博客和书籍，力求简单易懂。第一部分主要介绍LR和决策树两个简单的模型。第二部分介绍SVM相关，第三部分介绍boosting、隐马模型，第四部分介绍特征选择与计算学习理论，第五部分介绍无监督学习与强化学习。">
+<meta property="og:updated_time" content="2017-09-01T08:23:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习常考面试题总结(一)">
+<meta name="twitter:description" content="机器学习方面常考的面试题总结，随时更新，参考了一些博客和书籍，力求简单易懂。第一部分主要介绍LR和决策树两个简单的模型。第二部分介绍SVM相关，第三部分介绍boosting、隐马模型，第四部分介绍特征选择与计算学习理论，第五部分介绍无监督学习与强化学习。">
+  
+    <link rel="alternative" href="/atom.xml" title="Simon&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">崔伟健</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">quietly brilliant.</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Data-mining/" style="font-size: 15px;">Data mining</a> <a href="/tags/Datamining/" style="font-size: 10px;">Datamining</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/HMM/" style="font-size: 10px;">HMM</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java设计模式/" style="font-size: 12.5px;">Java设计模式</a> <a href="/tags/MeachingLearning/" style="font-size: 10px;">MeachingLearning</a> <a href="/tags/NLP/" style="font-size: 12.5px;">NLP</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/PythonCookBook/" style="font-size: 10px;">PythonCookBook</a> <a href="/tags/Word2Vec/" style="font-size: 10px;">Word2Vec</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/deeplearning，Tensorflow/" style="font-size: 10px;">deeplearning，Tensorflow</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/reprint/" style="font-size: 10px;">reprint</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/工作日志/" style="font-size: 10px;">工作日志</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络爬虫/" style="font-size: 10px;">网络爬虫</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">JLU在读计算机硕士。主修数据挖掘。一个每周运动八小时的胖子。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">崔伟健</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://ww4.sinaimg.cn/mw690/ab93cff4jw8ei6qjdsjjrj20u00u00vo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">崔伟健</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">quietly brilliant.</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Simonic512" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/cui-jian-simon" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-机器学习常考面试题总结-一" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/09/01/机器学习常考面试题总结-一/" class="article-date">
+  	<time datetime="2017-09-01T08:06:08.000Z" itemprop="datePublished">2017-09-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      机器学习常考面试题总结(一)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MeachingLearning/">MeachingLearning</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>机器学习方面常考的面试题总结，随时更新，参考了一些博客和书籍，力求简单易懂。第一部分主要介绍LR和决策树两个简单的模型。第二部分介绍SVM相关，第三部分介绍boosting、隐马模型，第四部分介绍特征选择与计算学习理论，第五部分介绍无监督学习与强化学习。<br><a id="more"></a></p>
+<h1 id="一、LR">一、LR</h1><h2 id="1-_介绍逻辑回归。">1. 介绍逻辑回归。</h2><p><strong>logistic 回归为判别模型，不是线性回归模型。</strong><br>经过学习后的 LR 分类器是一组权值 w0,w1…wn，权值与测试数据按照线性加和得到：x=w0+w1x1+…+wnxn<br>这里x1…xn是样本的n个特征。然后按照sigmoid函数的形式求出f(x)=1/(1+exp(-x))<br>sigmoid 函数的定义域为（-INF,+INF）,值域为(0,1)，在0的附近函数变化比较陡峭，因此适合作为分类函数。<br>w0,w1…wn这组权值是通过极大似然估计得到的。（梯度上升法或者牛顿法）</p>
+<h2 id="2-_LR_为什么用_sigmoid_函数，这个函数有什么优缺点？">2. LR 为什么用 sigmoid 函数，这个函数有什么优缺点？</h2><p>优点：模型简单，可导（导数形式简单），0-1阶跃，定义域为（-INF,+INF）,值域为(0,1)<br>缺点：幂运算比较耗时，容易出现梯度消失。<br>数学原理 <a href="https://www.zhihu.com/question/35322351" target="_blank" rel="external">https://www.zhihu.com/question/35322351</a></p>
+<h1 id="二、梯度下降，牛顿法与拟牛顿法">二、梯度下降，牛顿法与拟牛顿法</h1><h2 id="1-_梯度下降法">1. 梯度下降法</h2><p>在判别式模型中，往往需要学习参数，使得模型f(x)逼近真实的y.<br>梯度下降法和牛顿、拟牛顿法是常用的参数学习方法。<br><strong>梯度是函数值变化最快的方向。</strong><br>梯度下降过程：0.每个参数初始化为1 1.计算整个数据集的梯度 2.alpha<em>gradient更新系数 3.达到阈值，收敛。<br>随机梯度下降过程：0. 每个参数初始化为1 1.计算样本的梯度（batch_size） 2.alpha</em>gradient更新系数 3. 达到阈值，收敛。</p>
+<h2 id="2-_牛顿法与拟牛顿法">2. 牛顿法与拟牛顿法</h2><p>假设任务是优化目标函数f，求f的极大极小问题可以转化为求解f的导数f’=0的问题。为了求解f’=0,把f(x)泰勒展开到二阶形式,最终可以得到deta(x)=-(f’(xn))/(f’’(xn)),得出迭代公式：xn+1=xn-(f’(xn)/f’’(xn)),n=0,1…<br><strong>牛顿法可以得到曲线本身的信息，比梯度下降法更容易收敛（迭代次数更少。</strong><br>对于正定二次函数，牛顿法一步迭代就可以达到最优解。但是牛顿法是局部收敛，初始点选择不恰当时，往往会导致不收敛。牛顿法不是下降算法，二阶海塞矩阵非正定时，不能保证产生的方向是下降方向。二阶还塞矩阵还必须可逆，否则算法进行困难。总结起来缺点：算法运算量大，对函数要求苛刻（二阶连续可微分，海塞矩阵可逆）<br>考虑到牛顿法的这些缺点，设计了拟牛顿法，基本思想是：<strong>不用二阶偏导数而构造出可以近似海塞矩阵（海塞矩阵的逆）的正定对称阵，在拟牛顿条件下优化目标函数，</strong>不同的构造方法就产生了不同的拟牛顿法。主要的拟牛顿法有DFP算法、BFGS算法，L-BFGS算法。（具体推导看 <a href="http://blog.csdn.net/itplus/article/details/21896981" target="_blank" rel="external">http://blog.csdn.net/itplus/article/details/21896981</a> ）</p>
+<h1 id="三、决策树">三、决策树</h1><h2 id="1-_决策树原理">1. 决策树原理</h2><p>一棵决策树包含一个根节点，一系列内部节点与叶节点，每个叶节点对应于决策结果，其他每个节点对应于一个属性测试，每个节点的样本集合根据属性测试的结果被划分到子节点中，根节点包含样本全集，从根节点到每个叶节点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强的决策树。决策树是一个递归划分过程，<strong>其最核心的问题就是如何选择最优划分属性。</strong></p>
+<h2 id="2-_决策树如何防止过拟合">2. 决策树如何防止过拟合</h2><p>剪枝是决策树学习中防止过拟合的主要手段，在决策树学习过程中，为了尽可能正确分类训练样本，节点划分不断重复，造成决策树分支过多，这时就容易导致过拟合。<strong>决策树剪枝主要策略有预剪枝和后剪枝，</strong>预剪枝是指在决策树生成过程中，对每个节点划分前先进行估计，若当前节点的划分不能带来泛化性能的提升，则停止划分。后剪枝则是先训练生成一棵完整的决策树，然后自底向下的对非叶节点进行考察，若将某子树直接替换成叶节点能带来泛化性能提升，那就将该子树替换为叶节点。</p>
+<h2 id="3-_C45,ID3与CART">3. C45,ID3与CART</h2><p><strong>ID3 与 C45算法最大的区别就是，ID3使用了信息增益来划分属性，C45先从候选划分属性中找出信息增益高于平均水平的属性，再从其中选择信息增益率最高的。</strong>（主要原因是，信息增益比较偏重可取值数目较多的属性，信息增益率则比较偏重可取值数目较少的属性）<br>样本集合D的信息熵定义为 Ent(D)=-∑pklog2pk (对每种标注求和)pk是第k类样本所占的比例。Ent(D)越小，则D的纯度越高。<br>假定离散属性a有V个可能的取值，所有在a上取值为v的样本记为Dv,给每个分支节点赋予权重Dv/D（个数相除，包含样本越多权重越大），那么用属性a对样本D进行划分所获得的信息增益为：Gain(D,a)=Ent(D)-∑(Dv/D)<em>Ent(Dv)（对每种取值求和），信息增益越大，则意味着使用属性a来进行划分所获得的纯度提升越大。<br>而ID3使用的信息增益率则定义为 Gain_ratio(D,a)=Gain(D,a)/IV(a)<br>IV(a)=-∑(Dv/D)</em>log2(Dv/D)(对每种取值求和)<br>CART 决策树使用基尼系数来选择划分属性。Gini(D)反映了从数据集D中随机抽取两个样本，其类别标记不一致的概率，因此Gini(D)越小，则D的纯度越高。<br>Gini(D)=1-∑pk^2(对每个标记求和)，Gini_index(D,a)=∑(Dv/D)*Gini(Dv),在候选属性集合中，选择那个使得划分后基尼系数最小的属性作为划分属性。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/22/TensorFlow-学习笔记-一-数据流图/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">TensorFlow 学习笔记(一) 数据流图</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 崔伟健
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+        <p class="copyright">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本页总阅读量 <span id="busuanzi_value_page_pv"></span> 次</p>
+    </div>
+  </div>
+</footer>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
