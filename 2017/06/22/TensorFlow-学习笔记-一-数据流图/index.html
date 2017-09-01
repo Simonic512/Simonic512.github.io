@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Simon's blog">
 <meta property="og:description" content="一、 数据流图1. 数据流图数据流图是 TensorFlow 中定义计算结构的有向图。1). 节点以圆圈、椭圆、方框（图形）表示，代表运算。2). 边以箭头表示，代表向 Operation 传入和从 Operation 传出的实际数值（输入与输出）。3). input 节点不是可有可无的，其可以隐藏重复使用的细节，对输入的操作进行抽象。
 2. 节点的依赖关系1). 如果节点 a 需要来自节点 b">
-<meta property="og:updated_time" content="2017-06-22T13:39:24.000Z">
+<meta property="og:updated_time" content="2017-09-01T08:27:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow 学习笔记(一) 数据流图">
 <meta name="twitter:description" content="一、 数据流图1. 数据流图数据流图是 TensorFlow 中定义计算结构的有向图。1). 节点以圆圈、椭圆、方框（图形）表示，代表运算。2). 边以箭头表示，代表向 Operation 传入和从 Operation 传出的实际数值（输入与输出）。3). input 节点不是可有可无的，其可以隐藏重复使用的细节，对输入的操作进行抽象。
@@ -214,7 +214,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、_数据流图">一、 数据流图</h1><h2 id="1-_数据流图">1. 数据流图</h2><p>数据流图是 TensorFlow 中定义计算结构的有向图。<br>1). 节点以圆圈、椭圆、方框（图形）表示，代表运算。<br>2). 边以箭头表示，代表向 Operation 传入和从 Operation 传出的实际数值（输入与输出）。<br>3). input 节点不是可有可无的，其可以隐藏重复使用的细节，对输入的操作进行抽象。</p>
+        <a id="more"></a>
+<h1 id="一、_数据流图">一、 数据流图</h1><h2 id="1-_数据流图">1. 数据流图</h2><p>数据流图是 TensorFlow 中定义计算结构的有向图。<br>1). 节点以圆圈、椭圆、方框（图形）表示，代表运算。<br>2). 边以箭头表示，代表向 Operation 传入和从 Operation 传出的实际数值（输入与输出）。<br>3). input 节点不是可有可无的，其可以隐藏重复使用的细节，对输入的操作进行抽象。</p>
 <h2 id="2-_节点的依赖关系">2. 节点的依赖关系</h2><p>1). 如果节点 a 需要来自节点 b 的输出，那么节点 b 就是节点 a 的依赖节点。<br>2). 直接依赖与间接依赖<br>3). TensorFlow 中不允许存在循环依赖，主要原因在于循环依赖会在 TensorFlow 的运算中将依赖节点的数量变为无穷大，导致被传递的值变为正无穷，负无穷或者无限接近于0.<br><strong>4). 数据流图的展开与节点依赖：</strong><br>TensorFlow 中为每个节点的直接（非间接）依赖节点维护一个列表。从一个空栈开始，每遇到一个必须得到执行的节点就令其入栈，然后查看该输出节点的依赖节点列表，将其全部入栈。然后对这些节点进行检查，查看其直接依赖节点，然后将他们全部入栈，不断重复知道数据流图中所有依赖节点均已入栈。利用这种栈结构可以保证获得运算该数据流图的所有节点而且只包含必须运算的节点。同时对节点进行排序保证了必要的运算顺序。</p>
 <h2 id="3-_在_TensorFlow_中定义数据流图">3. 在 TensorFlow 中定义数据流图</h2><p><strong>使用 TensorFlow 的核心就是创建和定义数据流图。</strong></p>
 <p>二、TensorFlow 对象</p>
